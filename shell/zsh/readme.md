@@ -1,0 +1,3 @@
+# zsh
+
+zsh - z shell.
