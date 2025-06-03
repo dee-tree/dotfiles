@@ -5,13 +5,14 @@ local config = wezterm.config_builder()
 config.initial_cols = 120
 config.initial_rows = 28
 
-config.font_size = 12
-config.color_scheme = 'JetBrains Darcula'
+config.font_size = 11
+-- config.color_scheme = 'JetBrains Darcula'
+config.color_scheme = 'OneDark (base16)'
 
 config.use_fancy_tab_bar = true
 config.tab_bar_at_bottom = true
 -- config.tab_max_width = 16
-config.window_background_opacity = 0.8
+config.window_background_opacity = 0.85
 config.font = wezterm.font_with_fallback {
   'JetBrains Mono',
   'MesloLGS NF',
