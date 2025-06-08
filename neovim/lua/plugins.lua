@@ -37,7 +37,8 @@ vim.opt.termguicolors = true
 -- one dark pro --
 require("lazy").setup({
   {
-    "olimorris/onedarkpro.nvim",
+    -- "olimorris/onedarkpro.nvim",
+    "rmehri01/onenord.nvim",
     priority = 1000, -- Ensure it loads first
   },
   {
@@ -78,13 +79,21 @@ require("lazy").setup({
 }
 
 )
-require("onedarkpro").setup({
-  colors = {
-    -- red = "#e06c75" -- default
-    red = "#E97B84"
-  }
-})
+-- require("onedarkpro").setup({
+--   colors = {
+--     -- red = "#e06c75" -- default
+--     red = "#E97B84"
+--   }
+-- })
 -- --
+
+require("onenord").setup({
+  styles = {
+      diagnostics = "underline",
+    },
+    
+})
+
 
 -- comment --
 require('Comment').setup()

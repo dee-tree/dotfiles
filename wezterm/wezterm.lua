@@ -6,12 +6,11 @@ config.initial_cols = 120
 config.initial_rows = 28
 
 config.font_size = 11
--- config.color_scheme = 'JetBrains Darcula'
 config.color_scheme = 'OneDark (base16)'
 
-config.use_fancy_tab_bar = true
+config.use_fancy_tab_bar = false
 config.tab_bar_at_bottom = true
--- config.tab_max_width = 16
+config.tab_max_width = 16
 config.window_background_opacity = 0.85
 config.font = wezterm.font_with_fallback {
   'JetBrains Mono',
@@ -20,15 +19,24 @@ config.font = wezterm.font_with_fallback {
 }
 config.switch_to_last_active_tab_when_closing_tab = true
 config.adjust_window_size_when_changing_font_size = false
-config.switch_to_last_active_tab_when_closing_tab = true
+hide_tab_bar_if_only_one_tab = true
 config.disable_default_key_bindings = true -- may be commented
 
 config.colors = {
   tab_bar = {
+    background = '#292C35',
     active_tab = {
-      bg_color = '#111111',
+      bg_color = '#404553',
       fg_color = '#c0c0c0',
-    }
+    },
+    inactive_tab = {
+      bg_color = '#292C35',
+      fg_color = '#c0c0c0',
+    },
+    new_tab = {
+      bg_color = '#292C35',
+      fg_color = '#c0c0c0',
+    },
   }
 }
 
@@ -149,7 +157,6 @@ config.key_tables = {
     } },
   }
 }
-
 -- multiplexing
 config.ssh_domains = {
   {
