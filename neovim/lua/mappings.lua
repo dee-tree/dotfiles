@@ -21,11 +21,6 @@ end
 
 vim.g.mapleader = ","
 
-nmap('<C-j>', ':wincmd h<CR>', true)
-nmap('<C-k>', ':wincmd j<CR>', true)
-nmap('<C-l>', ':wincmd k<CR>', true)
-nmap('<C-;>', ':wincmd l<CR>', true)
-
 nmap('<A-j>', ':wincmd H<CR>', true)
 nmap('<A-k>', ':wincmd J<CR>', true)
 nmap('<A-l>', ':wincmd K<CR>', true)
@@ -57,21 +52,30 @@ nmap('<leader>w', ':w<CR>', false)
 nmap('<leader>d', ':vsplit<CR>', false)
 nmap('<leader>f', ':split<CR>', false)
 
+-- neotree bindings --
 nmap('<leader>e', '<Cmd>Neotree reveal<CR>', false)
 
+-- neotree windows movement
+-- nmap('<A-left>', '<C-w>h', false)
+-- vmap('<A-left>', '<C-w>h', false)
+-- omap('<A-left>', '<C-w>h', false)
 
-nmap('<A-left>', '<C-w>h', false)
-vmap('<A-left>', '<C-w>h', false)
-omap('<A-left>', '<C-w>h', false)
+-- nmap('<A-down>', '<C-w>j', false)
+-- vmap('<A-down>', '<C-w>j', false)
+-- omap('<A-down>', '<C-w>j', false)
 
-nmap('<A-down>', '<C-w>j', false)
-vmap('<A-down>', '<C-w>j', false)
-omap('<A-down>', '<C-w>j', false)
+-- nmap('<A-up>', '<C-w>k', false)
+-- vmap('<A-up>', '<C-w>k', false)
+-- omap('<A-up>', '<C-w>k', false)
 
-nmap('<A-up>', '<C-w>k', false)
-vmap('<A-up>', '<C-w>k', false)
-omap('<A-up>', '<C-w>k', false)
+-- nmap('<A-right>', '<C-w>l', false)
+-- vmap('<A-right>', '<C-w>l', false)
+-- omap('<A-right>', '<C-w>l', false)
+--                 --
 
-nmap('<A-right>', '<C-w>l', false)
-vmap('<A-right>', '<C-w>l', false)
-omap('<A-right>', '<C-w>l', false)
+-- windows (panes) navigation (not required since smart-splits setting) --
+-- nmap('<A-j>', ':wincmd h<CR>', true)
+-- nmap('<A-k>', ':wincmd j<CR>', true)
+-- nmap('<A-l>', ':wincmd k<CR>', true)
+-- nmap('<A-;>', ':wincmd l<CR>', true)
+--                            --
