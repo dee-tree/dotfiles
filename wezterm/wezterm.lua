@@ -11,10 +11,8 @@ theme.apply_to_config(config)
 local domains = require 'domains'
 domains.apply_to_config(config)
 
--- plugins --
-smart_splits = require 'plugin_smart_splits'
-smart_splits.apply_to_config(config)
--------------
+plugins = require 'plugins'
+plugins.apply_to_config(config)
 
 -- Windows specific
 onWindows = wezterm.target_triple == 'x86_64-pc-windows-msvc'
