@@ -21,6 +21,15 @@ end
 
 vim.g.mapleader = ","
 
+nmap('<C-s>', ':w<CR>', false)       -- save file
+imap('<C-s>', '<ESC>:w<CR>', false)  -- save file
+
+nmap('<C-a>', 'ggVG', false)      -- select all
+imap('<C-a>', '<ESC>ggVG', false) -- select all
+
+nmap('<C-c>', '"+y', false) -- yank to clipboard
+vmap('<C-c>', '"+y', false) -- yank to clipboard
+
 nmap('<A-j>', ':wincmd H<CR>', true)
 nmap('<A-k>', ':wincmd J<CR>', true)
 nmap('<A-l>', ':wincmd K<CR>', true)
@@ -49,8 +58,18 @@ vmap('cp', '"+y', false)
 nmap('<leader>q', ':q!<CR>', false)
 nmap('<leader>w', ':w<CR>', false)
 
-nmap('<leader>d', ':vsplit<CR>', false)
-nmap('<leader>f', ':split<CR>', false)
+-- nmap('<leader>d', ':vsplit<CR>', false)
+-- nmap('<leader>f', ':split<CR>', false)
+nmap('<leader>i', ':split<CR>', false)
+nmap('<leader>o', ':split<CR>', false)
+nmap('<leader>u', ':vsplit<CR>', false)
+nmap('<leader>p', ':vsplit<CR>', false)
+
+-- telescope
+nmap('<leader>ff', '<cmd>Telescope find_files<cr>', false)
+nmap('<leader>fg', '<cmd>Telescope live_grep<cr>', false)
+nmap('<leader>fb', '<cmd>Telescope buffers<cr>', false)
+nmap('<leader>fh', '<cmd>Telescope help_tags<cr>', false)
 
 -- neotree bindings --
 nmap('<leader>e', '<Cmd>Neotree reveal<CR>', false)

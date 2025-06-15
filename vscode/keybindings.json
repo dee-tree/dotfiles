@@ -61,6 +61,10 @@
         "when": "editorHasSelection || editorHasMultipleSelections"
     },
     {
+        "key": "ctrl+n",
+        "command": "-workbench.action.files.newUntitledFile"
+    },
+    {
         "key": "ctrl+d",
         "command": "editor.action.copyLinesDownAction",
         "when": "editorTextFocus && !editorReadonly && !inCompositeEditor"
@@ -164,7 +168,8 @@
     },
     {
         "key": "ctrl+shift+r",
-        "command": "workbench.action.replaceInFiles"
+        "command": "workbench.action.replaceInFiles",
+        "when": "!(filesExplorerFocus && foldersViewVisible && !explorerResourceIsRoot && !explorerResourceReadonly && !inputFocus)"
     },
     {
         "key": "ctrl+alt+c",
