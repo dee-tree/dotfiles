@@ -10,6 +10,7 @@ function module.apply_to_config(config)
 
     config.use_fancy_tab_bar = false
     config.tab_bar_at_bottom = true
+    config.hide_tab_bar_if_only_one_tab = false -- should be shown if statusline plugins are used
     config.tab_max_width = 16
     config.window_background_opacity = 0.85
     config.font = wezterm.font_with_fallback {
@@ -20,7 +21,6 @@ function module.apply_to_config(config)
     }
     config.switch_to_last_active_tab_when_closing_tab = true
     config.adjust_window_size_when_changing_font_size = false
-    config.hide_tab_bar_if_only_one_tab = true
     config.disable_default_key_bindings = true -- may be commented
 
     -- window theme

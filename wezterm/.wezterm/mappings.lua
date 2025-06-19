@@ -59,7 +59,6 @@ function module.apply_to_config(config)
     { key = 't', mods = 'CTRL|SHIFT', action = act.SpawnTab 'CurrentPaneDomain' },
     { key = 'PageDown', mods = 'ALT', action = act.ShowTabNavigator },
     { key = 'f', mods = 'CTRL|SHIFT', action = act.ShowTabNavigator },
-    { key = 'W', mods = 'CTRL|SHIFT', action = act.CloseCurrentTab { confirm = true } },
 
     -- panes navigation
     { key = 'u', mods = 'ALT', action = act.SplitPane { direction = 'Left' } },
@@ -67,8 +66,9 @@ function module.apply_to_config(config)
     { key = 'o', mods = 'ALT', action = act.SplitPane { direction = 'Up' } },
     { key = 'p', mods = 'ALT', action = act.SplitPane { direction = 'Right' } },
 
-    { key = 'w', mods = 'LEADER', action = act.CloseCurrentPane { confirm = true } },
-    { key = 'w', mods = 'ALT', action = act.CloseCurrentPane { confirm = true } },
+    { key = 'q', mods = 'LEADER', action = act.CloseCurrentPane { confirm = true } },
+    { key = 'q', mods = 'ALT', action = act.CloseCurrentPane { confirm = true } },
+    { key = 'Q', mods = 'CTRL|SHIFT', action = act.CloseCurrentTab { confirm = true } },
 
     -- managed by smart-splits plug-in
     -- { key = 'LeftArrow', mods = 'ALT', action = act.ActivatePaneDirection 'Left' },
