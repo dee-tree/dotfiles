@@ -1,5 +1,7 @@
 {
-    "workbench.colorTheme": "OneNord",
+    "workbench.colorTheme": "Catppuccin Macchiato",
+    "workbench.iconTheme": "catppuccin-macchiato",
+
     "workbench.tree.expandMode": "doubleClick",
 
     "files.autoSave": "afterDelay",
@@ -41,23 +43,36 @@
     "telemetry.enableTelemetry": false,
 
     "workbench.colorCustomizations": {
-    "[OneNord]": {
-        // previous background color (bit lighter): #292C35
-        // current background color (bit darker): #24262E
-        "sideBar.background": "#24262E",
+    "[Catppuccin Macchiato]": {
+        // previous2 background color (bit lighter): #292C35
+        // previous1 background color (bit darker): #262A32
+        // current background color (between previous1 and previous2): #262A32
+        // yellow: #EBCB8B
+        "sideBar.background": "#262A32",
         "panel.border": "#434856",
-        "panel.background": "#24262E",
-        "sideBarSectionHeader.background": "#24262E",
+        "panel.background": "#262A32",
+        "sideBarSectionHeader.background": "#262A32",
         "statusBar.background": "#343844",
         "statusBar.border": "#343844",
-        "titleBar.activeBackground": "#24262E",
-        "editorGutter.background": "#24262E",
+        "titleBar.activeBackground": "#262A32",
+        "breadcrumb.background": "#262A32",
+        "minimap.background": "#262A32",
+        "editorOverviewRuler.background": "#262A32",
+        "editorGutter.background": "#262A32",
         "editorGutter.modifiedBackground": "#ebcb8b",
 
-        "tab.activeBackground": "#24262E",
-        "tab.inactiveBackground": "#343844",
-        "editorGroupHeader.tabsBackground": "#343844",
-        "editorGroupHeader.noTabsBackground": "#343844",
+        "tab.activeBorderTop": "#ebcb8b",
+        "tab.hoverBorder": "#b6a585",
+        "tab.activeBackground": "#262A32",
+        "tab.inactiveBackground": "#262A32",
+        "tab.inactiveForeground": "#e8e8e8",
+        "editorGroupHeader.tabsBackground": "#262A32",
+        "editorGroupHeader.noTabsBackground": "#262A32",
+        "activityBar.foreground": "#d8dee9",
+        "activityBar.activeBorder": "#d8dee973",
+        "activityBarBadge.background": "#d8dee9",
+        "editorWidget.background": "#262A32",
+        "widget.shadow": "#d8dee927",
 
         "list.activeSelectionBackground": "#434959",
         "list.inactiveSelectionBackground": "#373c49",
@@ -70,18 +85,22 @@
         "statusBarItem.remoteForeground": "#e8e8e8",
         "statusBarItem.remoteBackground": "#39425e",
 
-        "menu.background": "#24262E",
-        "input.background": "#24262E",
-        "quickInput.background": "#24262E",
+        "menu.background": "#262A32",
+        "input.background": "#262A32",
+        "quickInput.background": "#262A32",
         "quickInputList.focusBackground": "#4a5164",
         "quickInputList.focusForeground": "#cfd2db",
         "button.background": "#434856",
+        "button.hoverBackground": "#637b94",
         "button.foreground": "#e8e8e8",
 
-        "terminal.background": "#24262E",
-        "commandCenter.background": "#24262E",
+        "sideBarTitle.foreground": "#e8e8e8",
+        "sideBarSectionHeader.foreground": "#e8e8e8",
+
+        "terminal.background": "#262A32",
+        "commandCenter.background": "#262A32",
         "activityBar.background": "#282a33",
-        "editor.background": "#282a33",
+        "editor.background": "#262A32",
         "editor.selectionBackground": "#484e64",
         "editor.wordHighlightBackground": "#5e6683a8",
         "editorBracketMatch.background": "#4a4f5f",
@@ -99,15 +118,73 @@
     },
 
     "editor.tokenColorCustomizations": {
+        "[Catppuccin Macchiato]": {
         "textMateRules": [
             {
-                "scope": ["punctuation", "punctuation.separator", "variable.other"],
+                "scope": ["punctuation", "punctuation.separator"],
                 "settings": {
-                    // "foreground": "#b48ead"
                     "foreground": "#8fbcbb"
                 }
-            }
+            },
+            {
+                "scope": ["keyword.operator.assignment.c,keyword.operator.comparison.c,keyword.operator.c,keyword.operator.increment.c,keyword.operator.decrement.c,keyword.operator.bitwise.shift.c,keyword.operator.assignment.cpp,keyword.operator.comparison.cpp,keyword.operator.cpp,keyword.operator.increment.cpp,keyword.operator.decrement.cpp,keyword.operator.bitwise.shift.cpp"],
+                "settings": {
+                    "foreground": "#b48ead"
+                }
+            },
+            {
+                "name": "Variables",
+                "scope": [
+                    "variable",
+                    "variable.c",
+                    "variable.language",
+                    "entity.other",
+                    "token.variable.parameter.java",
+                    "variable.other.class.js",
+                    "variable.other.class.js",
+                    "variable.interpolation",
+                    "entity.name.variable.local.cs",
+                    "variable.parameter.function.js",
+                    "variable.parameter.function.coffee",
+                    "meta.variable",
+                    "meta.definition.variable.name.groovy",
+                    "text.variable",
+                    "entity.name.variable.parameter.cs",
+                    "entity.name.variable.field.cs",
+                    "variable.parameter.function.latex",
+                    "variable.other.object",
+                    "variable.other.readwrite.c",
+                    "variable.other.constant.property",
+                    "support.variable.magic.python",
+                    "variable.parameter.function.language.special.cls.python",
+                    "variable.language.rust",
+                    "variable.parameter.function",
+                    "meta.definition.variable.name.java",
+                    "variable.other.readwrite,meta.object-literal.key,support.variable.property,support.variable.object.process,support.variable.object.node",
+                    "variable.parameter.function.language.python",
+                ],
+                "settings": {
+                    "foreground": "#8fBCBB"
+                }
+            },
+            {
+                "name": "function parameters",
+                "scope": [
+                    "function.parameter",
+                    "function.parameter.ruby",
+                    "function.parameter.cs",
+                    "variable.parameter.function.js",
+                    "meta.arguments.coffee",
+                    "variable.parameter.function.coffee",
+                    "variable.parameter.function"
+
+                ],
+                "settings": {
+                    "foreground": "#abb2bf"
+                }
+            },
     ],
-        "comments": "#758caa"
+        "comments": "#6e86a1",
     }
+    },
 }

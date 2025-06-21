@@ -1,0 +1,7 @@
+.ssh
+.gpg
+.local.*
+.local
+*.local
+.private*
+dotlocal
