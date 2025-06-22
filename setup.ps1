@@ -40,7 +40,12 @@ if ($setup_ohmyposh) {
 
 if ($setup_powershell) {
     $profiledir = Split-Path -Path $profile
+    $files = Get-ChildItem "$root/pwsh/"
+
+    foreach ($f in $files){
+        $cfgfile = $f.FullName
+        $basename = Split-Path $f -leaf
+        ln "$cfgfile" "$profiledir/$basename"
+    }
     ln "$root/pwsh/powershell.profile.ps1" $profile
-    ln "$root/pwsh/components.ps1" "$profiledir/components.ps1"
-    ln "$root/pwsh/theme.ps1" "$profiledir/theme.ps1"
 }
