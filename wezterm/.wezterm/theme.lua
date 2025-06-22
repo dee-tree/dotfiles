@@ -26,24 +26,31 @@ function module.apply_to_config(config)
     -- window theme
     config.window_decorations = "INTEGRATED_BUTTONS|RESIZE"
     -- config.window_decorations = "RESIZE"
+    config.enable_scroll_bar = true
 
-    -- previous background color (bit lighter): #292C35
-    -- current background color (bit darker): #24262E
-
+    -- previous2 background color (bit lighter): #292C35
+    -- previous1 background color (bit darker): #24262e
+    -- current background color (between previous1 and previous2): #262A32
     config.colors = {
-        background = '#24262e',
+        background = '#262A32',
+        scrollbar_thumb = '3a3d44',
         tab_bar = {
-            background = '#24262e',
+            background = '#262A32',
             active_tab = {
-                bg_color = '#343844',
+                bg_color = '#262A32',
                 fg_color = '#c0c0c0',
+                underline = "Single",
             },
             inactive_tab = {
-                bg_color = '#24262e',
+                bg_color = '#262A32',
+                fg_color = '#c0c0c0',
+            },
+            inactive_tab_hover = {
+                bg_color = '#3a3d44',
                 fg_color = '#c0c0c0',
             },
             new_tab = {
-                bg_color = '#24262e',
+                bg_color = '#262A32',
                 fg_color = '#c0c0c0',
             },
         },
