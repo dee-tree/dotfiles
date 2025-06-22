@@ -45,7 +45,7 @@
     "workbench.colorCustomizations": {
     "[Catppuccin Macchiato]": {
         // previous2 background color (bit lighter): #292C35
-        // previous1 background color (bit darker): #262A32
+        // previous1 background color (bit darker): #24262E
         // current background color (between previous1 and previous2): #262A32
         // yellow: #EBCB8B
         "sideBar.background": "#262A32",
@@ -53,26 +53,29 @@
         "panel.background": "#262A32",
         "sideBarSectionHeader.background": "#262A32",
         "statusBar.background": "#343844",
+        "statusBar.noFolderBackground": "#343844",
         "statusBar.border": "#343844",
         "titleBar.activeBackground": "#262A32",
+        "titleBar.inactiveBackground": "#292C35",
         "breadcrumb.background": "#262A32",
         "minimap.background": "#262A32",
         "editorOverviewRuler.background": "#262A32",
         "editorGutter.background": "#262A32",
         "editorGutter.modifiedBackground": "#ebcb8b",
 
-        "tab.activeBorderTop": "#ebcb8b",
-        "tab.hoverBorder": "#b6a585",
+        "tab.activeBorderTop": "#c6a0f6",
+        "tab.hoverBorder": "#c6a0f6",
         "tab.activeBackground": "#262A32",
         "tab.inactiveBackground": "#262A32",
-        "tab.inactiveForeground": "#e8e8e8",
+        "tab.inactiveForeground": "#cad3f5cb",
         "editorGroupHeader.tabsBackground": "#262A32",
         "editorGroupHeader.noTabsBackground": "#262A32",
         "activityBar.foreground": "#d8dee9",
         "activityBar.activeBorder": "#d8dee973",
-        "activityBarBadge.background": "#d8dee9",
-        "editorWidget.background": "#262A32",
+        "activityBarBadge.background": "#d8dee9bb",
+        "editorWidget.background": "#24262E",
         "widget.shadow": "#d8dee927",
+        "notifications.background": "#24262E",
 
         "list.activeSelectionBackground": "#434959",
         "list.inactiveSelectionBackground": "#373c49",
@@ -90,12 +93,14 @@
         "quickInput.background": "#262A32",
         "quickInputList.focusBackground": "#4a5164",
         "quickInputList.focusForeground": "#cfd2db",
-        "button.background": "#434856",
-        "button.hoverBackground": "#637b94",
+        // "button.background": "#434856",
+        "button.background": "#715a8d",
+        "button.hoverBackground": "#9677bd",
         "button.foreground": "#e8e8e8",
+        "extensionButton.prominentForeground": "#e8e8e8",
 
-        "sideBarTitle.foreground": "#e8e8e8",
-        "sideBarSectionHeader.foreground": "#e8e8e8",
+        // "sideBarTitle.foreground": "#e8e8e8",
+        // "sideBarSectionHeader.foreground": "#e8e8e8",
 
         "terminal.background": "#262A32",
         "commandCenter.background": "#262A32",
