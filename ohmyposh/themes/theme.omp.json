@@ -1,0 +1,139 @@
+// based on theme: https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/powerlevel10k_modern.omp.json
+// Separators:
+// - `\ue0bc`: / (left), and `\ue0ba` (right)
+// - `\ue0b6`: (
+{
+  "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
+  "blocks": [
+    {
+      "alignment": "left",
+      "segments": [
+        {
+          "background": "#abb2bf",
+          "foreground": "#262A32",
+          "leading_diamond": "\ue0b6",
+          "style": "diamond",
+          "template": " {{ if .WSL }}WSL at {{ end }}{{.Icon}} ",
+          "type": "os"
+        },
+        {
+          "background": "transparent",
+          "foreground": "#ebcb8b",
+          "powerline_symbol": "\ue0bc",
+          "properties": {
+            "style": "full"
+          },
+          "style": "powerline",
+          "template": " \uf0e7 ",
+          "type": "root"
+        },
+        {
+          "background": "#777070",
+          "foreground": "#e8e8e8",
+          "powerline_symbol": "\ue0bc",
+          "properties": {
+            "style": "full"
+          },
+          "style": "powerline",
+          "template": " {{ .Path }} ",
+          "type": "path"
+        },
+        {
+          "background": "#e5c07b",
+          "foreground": "#000000",
+          "powerline_symbol": "\ue0bc",
+          "style": "powerline",
+          "template": " {{ .HEAD }} ",
+          "type": "git"
+        }
+      ],
+      "type": "prompt"
+    },
+    {
+      "alignment": "right",
+      "segments": [
+        {
+          "foreground": "#a3be8c",
+          "foreground_templates": [
+            "{{ if gt .Code 0 }}#FF5252{{ end }}"
+          ],
+          "properties": {
+            "always_enabled": true
+          },
+          "style": "plain",
+          "template": "  {{ if .Error }}{{.String}} {{ end }}",
+          "type": "status"
+        },
+        {
+          "type": "executiontime",
+          "style": "diamond",
+          "trailing_diamond": "\ue0ba",
+          "foreground": "#e8e8e8",
+          "template": " <#e8e8e8></> {{ if and (gt .Ms 999) (lt .Ms 2000) }}<#ebcb8b>{{ else if gt .Ms 1999 }}<#d08770>{{ end }} {{ .FormattedMs }}{{ if gt .Ms 999 }}</>{{ end }} ",
+          "properties": {
+            "threshold": 500,
+            "style": "austin",
+            "always_enabled": true
+          }
+        },
+        {
+          "background": "#316996",
+          "foreground": "#e8e8e8",
+          "leading_diamond": "\ue0ba",
+          "style": "diamond",
+          "template": " {{ if .Error }}{{ .Error }}{{ else }}{{ if .Venv }}{{ .Venv }} {{ end }}{{ .Full }}{{ end }} <transparent>\ue0b6</>",
+          "type": "python"
+        },
+        {
+          "background": "#7FD5EA",
+          "foreground": "#e8e8e8",
+          "leading_diamond": "\ue0ba",
+          "style": "diamond",
+          "template": " {{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }} <transparent>\ue0b6</>",
+          "type": "go"
+        },
+        {
+          "background": "transparent",
+          "foreground": "#e5c07b",
+          "leading_diamond": "\ue0ba",
+          "style": "diamond",
+          "template": " {{ if .SSHSession }}\ueba9 {{ end }}{{ .UserName }}{{ if .SSHSession }}@{{ .HostName }}{{end}} ",
+          "type": "session"
+        },
+        {
+          "background": "#abb2bf",
+          "foreground": "#000000",
+          "leading_diamond": "\ue0ba",
+          "properties": {
+            "time_format": "15:04:05"
+          },
+          "style": "diamond",
+          "template": " {{ .CurrentDate | date .Format }}  ",
+          "trailing_diamond": "\ue0b4",
+          "type": "time"
+        }
+      ],
+      "type": "prompt"
+    },
+    {
+      "alignment": "left",
+      "newline": true,
+      "segments": [
+        {
+          "foreground": "#a3be8c",
+          "foreground_templates": [
+            "{{ if gt .Code 0 }}#FF5252{{ end }}"
+          ],
+          "properties": {
+            "always_enabled": true
+          },
+          "style": "plain",
+          "template": "\u276f ",
+          "type": "status"
+        }
+      ],
+      "type": "prompt"
+    }
+  ],
+  "version": 3
+}
