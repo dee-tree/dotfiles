@@ -3,10 +3,11 @@ $localdir = $env:localappdata
 
 $root = split-path -parent $MyInvocation.MyCommand.Definition
 
-$setup_wezterm = !$env:skip_wezterm
-$setup_neovim = !$env:skip_neovim
-$setup_ohmyposh = !$env:skip_ohmyposh
-$setup_powershell = !$env:skip_powershell
+# setup logics: not set `skip` variable and not set `setup` for other tool, or set `setup` for this tool
+$setup_wezterm = !$env:skip_wezterm -and (!($env:setup_wezterm -or $env:setup_neovim -or $env:setup_ohmyposh -or $env:setup_powershell) -or $env:setup_wezterm)
+$setup_neovim = !$env:skip_neovim -and (!($env:setup_wezterm -or $env:setup_neovim -or $env:setup_ohmyposh -or $env:setup_powershell) -or $env:setup_neovim)
+$setup_ohmyposh = !$env:skip_ohmyposh -and (!($env:setup_wezterm -or $env:setup_neovim -or $env:setup_ohmyposh -or $env:setup_powershell) -or $env:setup_ohmyposh)
+$setup_powershell = !$env:skip_powershell -and (!($env:setup_wezterm -or $env:setup_neovim -or $env:setup_ohmyposh -or $env:setup_powershell) -or $env:setup_powershell)
 
 function isfile($path) {
     # source: https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.management/test-path?view=powershell-7.5#example-4-check-for-a-file
