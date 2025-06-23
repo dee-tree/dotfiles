@@ -42,6 +42,8 @@ if ($setup_powershell) {
     $profiledir = Split-Path -Path $profile
     $files = Get-ChildItem "$root/pwsh/"
 
+    Install-PSResource -Name Microsoft.WinGet.CommandNotFound
+
     foreach ($f in $files){
         $cfgfile = $f.FullName
         $basename = Split-Path $f -leaf
