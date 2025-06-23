@@ -9,6 +9,10 @@
         "command": "workbench.action.showCommands"
     },
     {
+        "key": "alt+\\",
+        "command": "workbench.action.showCommands"
+    },
+    {
         "key": "ctrl+w",
         "command": "editor.action.smartSelect.grow",
         "when": "editorTextFocus"
