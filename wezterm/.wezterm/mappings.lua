@@ -1,5 +1,6 @@
 local wezterm = require 'wezterm'
 local act = wezterm.action
+local utils = require 'dotlocal.utilua'
 local module = {}
 
 function module.apply_to_config(config)
@@ -23,6 +24,11 @@ function module.apply_to_config(config)
         mods = 'NONE',
         action = act.Nop,
     },
+    {
+        event = { Up = { streak = 1, button = 'Left' } },
+        mods = 'CTRL',
+        action = act.OpenLinkAtMouseCursor,
+    },
     }
 
     config.leader = {
@@ -31,7 +37,10 @@ function module.apply_to_config(config)
     }
 
     config.keys = {
-    { key = '\\', mods = 'ALT', action = wezterm.action.ShowLauncher },
+    { key = '\\', mods = 'ALT', action = act.ShowLauncher },
+    { key = '/', mods = 'ALT', action = act.Search("CurrentSelectionOrEmptyString") },
+    { key = 'c', mods = 'LEADER', action = wezterm.action.ActivateCopyMode },
+    { key = 'c', mods = 'ALT', action = wezterm.action.ActivateCopyMode },
 
     { key = 'C', mods = 'CTRL|SHIFT', action = act({ CopyTo = "Clipboard" }), },
     {
@@ -82,7 +91,7 @@ function module.apply_to_config(config)
     -- { key = 'RightArrow', mods = 'SHIFT|ALT', action = act.AdjustPaneSize { 'Right', 2 } },
 
     { key = 'r', mods = 'LEADER', action = act.ReloadConfiguration },
-    {
+    { -- rename tab
         key = 'R', mods = 'CTRL|SHIFT', action = act.PromptInputLine {
         description = 'Enter new name for tab',
         action = wezterm.action_callback(
@@ -94,29 +103,43 @@ function module.apply_to_config(config)
         ),
         },
     },
+    { -- rename workspace
+        key = 'r', mods = 'ALT', action = act.PromptInputLine {
+            description = 'Enter new name for workspace',
+            action = wezterm.action_callback(
+                function(window, pane, line)
+                    if line then
+                        mux.rename_workspace(window:mux_window():get_workspace(), line)
+                    end
+                end
+            ),
+    }},
     {
-        key = 'n',
-        mods = 'SHIFT|CTRL',
-        action = wezterm.action.ToggleFullScreen,
-    },
-
-    -- copy mode --
-    { key = 'c', mods = 'LEADER', action = wezterm.action.ActivateCopyMode },
+        key = 'w', mods = 'ALT', action = act.ShowLauncherArgs { flags = 'WORKSPACES' },
+  } ,
+    { key = 'n', mods = 'SHIFT|CTRL', action = wezterm.action.ToggleFullScreen },
+    { key = 'd', mods = 'ALT', action = wezterm.action.ShowDebugOverlay },
 
     }
 
-    config.key_tables = {
-    copy_mode = {
-        { key="Escape", mods="NONE", action = act.CopyMode 'Close' },
-        { key="c", mods="CTRL", action = act.CopyMode 'Close' },
-        { key = 'j', mods = 'NONE', action = act.CopyMode 'MoveLeft' },
-        { key = 'LeftArrow', mods = 'NONE', action = act.CopyMode 'MoveLeft' },
-        { key = 'k', mods = 'NONE', action = act.CopyMode 'MoveDown' },
-        { key = 'DownArrow', mods = 'NONE', action = act.CopyMode 'MoveDown' },
-        { key = 'l', mods = 'NONE', action = act.CopyMode 'MoveUp' },
-        { key = 'UpArrow', mods = 'NONE', action = act.CopyMode 'MoveUp' },
-        { key = ';', mods = 'NONE', action = act.CopyMode 'MoveRight' },
-        { key = 'RightArrow', mods = 'NONE', action = act.CopyMode 'MoveRight' },
+    common_copy_search = {
+        { key="Escape", mods="NONE", action = wezterm.action_callback(function(window, pane)
+            selection_text = window:get_selection_text_for_pane(pane)
+            is_selection_active = string.len(selection_text) ~= 0
+            if is_selection_active then
+                window:perform_action(act.CopyMode 'ClearSelectionMode', pane)
+                window:perform_action(act.CopyMode 'ClearPattern', pane) -- for search mode
+                window:perform_action(act.ClearSelection, pane)
+            else
+                window:perform_action(act.CopyMode 'Close', pane)
+            end
+        end),
+        },
+        { key="c", mods="CTRL", action = act.Multiple {
+            { CopyTo = 'ClipboardAndPrimarySelection' },
+            { CopyMode = 'ClearPattern' }, -- for search mode
+            { CopyMode = 'Close' },
+        }},
 
         { key="LeftArrow", mods="CTRL", action = act.CopyMode 'MoveBackwardWord' },
         { key="j", mods="CTRL", action = act.CopyMode 'MoveBackwardWord' },
@@ -125,6 +148,84 @@ function module.apply_to_config(config)
         { key="RightArrow", mods="CTRL", action = act.CopyMode 'MoveForwardWord' },
         { key=";", mods="CTRL", action = act.CopyMode 'MoveForwardWord' },
         { key="e", mods="NONE", action = act.CopyMode 'MoveForwardWord' },
+
+        { key="LeftArrow", mods="SHIFT", action = wezterm.action_callback(function(window, pane)
+            selection_text = window:get_selection_text_for_pane(pane)
+            if isempty(selection_text) then
+                window:perform_action(act.CopyMode { SetSelectionMode = 'Cell' }, pane)
+            end
+            window:perform_action(act.CopyMode 'MoveLeft', pane)
+        end)},
+
+        { key="RightArrow", mods="SHIFT", action = wezterm.action_callback(function(window, pane)
+            selection_text = window:get_selection_text_for_pane(pane)
+            if isempty(selection_text) then
+                window:perform_action(act.CopyMode { SetSelectionMode = 'Cell' }, pane)
+            end
+            window:perform_action(act.CopyMode 'MoveRight', pane)
+        end)},
+
+        { key="UpArrow", mods="SHIFT", action = wezterm.action_callback(function(window, pane)
+            selection_text = window:get_selection_text_for_pane(pane)
+            if isempty(selection_text) then
+                window:perform_action(act.CopyMode { SetSelectionMode = 'Cell' }, pane)
+            end
+            window:perform_action(act.CopyMode 'MoveUp', pane)
+        end)},
+
+        { key="DownArrow", mods="SHIFT", action = wezterm.action_callback(function(window, pane)
+            selection_text = window:get_selection_text_for_pane(pane)
+            if isempty(selection_text) then
+                window:perform_action(act.CopyMode { SetSelectionMode = 'Cell' }, pane)
+            end
+            window:perform_action(act.CopyMode 'MoveDown', pane)
+        end)},
+
+        { key="LeftArrow", mods="CTRL|SHIFT", action = wezterm.action_callback(function(window, pane)
+            selection_text = window:get_selection_text_for_pane(pane)
+            if isempty(selection_text) then
+                window:perform_action(act.CopyMode { SetSelectionMode = 'Word' }, pane)
+            end
+            window:perform_action(act.CopyMode 'MoveBackwardWord', pane)
+        end)},
+
+        { key="RightArrow", mods="CTRL|SHIFT", action = wezterm.action_callback(function(window, pane)
+            selection_text = window:get_selection_text_for_pane(pane)
+            if isempty(selection_text) then
+                window:perform_action(act.CopyMode { SetSelectionMode = 'Word' }, pane)
+            end
+            window:perform_action(act.CopyMode 'MoveForwardWord', pane)
+        end)},
+
+        { key="UpArrow", mods="CTRL|SHIFT", action = wezterm.action_callback(function(window, pane)
+            selection_text = window:get_selection_text_for_pane(pane)
+            if isempty(selection_text) then
+                window:perform_action(act.CopyMode { SetSelectionMode = 'Line' }, pane)
+            end
+            window:perform_action(act.CopyMode 'MoveUp', pane)
+        end)},
+
+        { key="DownArrow", mods="CTRL|SHIFT", action = wezterm.action_callback(function(window, pane)
+            selection_text = window:get_selection_text_for_pane(pane)
+            if isempty(selection_text) then
+                window:perform_action(act.CopyMode { SetSelectionMode = 'Line' }, pane)
+            end
+            window:perform_action(act.CopyMode 'MoveDown', pane)
+        end)},
+    }
+
+    config.key_tables = {
+    copy_mode = {
+        { key = "/", mods = "NONE", action = wezterm.action { Search = { CaseSensitiveString = "" } } },
+
+        { key = 'j', mods = 'NONE', action = act.CopyMode 'MoveLeft' },
+        { key = 'LeftArrow', mods = 'NONE', action = act.CopyMode 'MoveLeft' },
+        { key = 'k', mods = 'NONE', action = act.CopyMode 'MoveDown' },
+        { key = 'DownArrow', mods = 'NONE', action = act.CopyMode 'MoveDown' },
+        { key = 'l', mods = 'NONE', action = act.CopyMode 'MoveUp' },
+        { key = 'UpArrow', mods = 'NONE', action = act.CopyMode 'MoveUp' },
+        { key = ';', mods = 'NONE', action = act.CopyMode 'MoveRight' },
+        { key = 'RightArrow', mods = 'NONE', action = act.CopyMode 'MoveRight' },
 
         { key="PageUp", mods="NONE", action = act.CopyMode 'PageUp' },
         { key="PageDown", mods="NONE", action = act.CopyMode 'PageDown' },
@@ -137,22 +238,33 @@ function module.apply_to_config(config)
         { key=" ", mods="CTRL|SHIFT", action = act.CopyMode { SetSelectionMode = 'Line' } },
 
         { key="y", mods="NONE", action = act.Multiple {
-        { CopyTo = 'ClipboardAndPrimarySelection' },
-        { CopyMode = 'MoveToScrollbackBottom' },
-        { CopyMode = 'Close' },
-        } },
+            { CopyTo = 'ClipboardAndPrimarySelection' },
+            { CopyMode = 'ClearPattern' }, -- for search mode
+            { CopyMode = 'Close' },
+        }},
         { key="c", mods="NONE", action = act.Multiple {
-        { CopyTo = 'ClipboardAndPrimarySelection' },
-        { CopyMode = 'MoveToScrollbackBottom' },
-        { CopyMode = 'Close' },
-        } },
-        { key="C", mods="CTRL|SHIFT", action = act.Multiple {
-        { CopyTo = 'ClipboardAndPrimarySelection' },
-        { CopyMode = 'MoveToScrollbackBottom' },
-        { CopyMode = 'Close' },
-        } },
+            { CopyTo = 'ClipboardAndPrimarySelection' },
+            { CopyMode = 'ClearPattern' }, -- for search mode
+            { CopyMode = 'Close' },
+        }},
+    },
+    search_mode = {
+        { key = 'Enter', mods = 'NONE', action = act.CopyMode 'PriorMatch' },
+        { key = 'n', mods = 'CTRL', action = act.CopyMode 'NextMatch' },
+        { key = 'N', mods = 'SHIFT', action = act.CopyMode 'PriorMatch' },
+        { key = 'p', mods = 'CTRL', action = act.CopyMode 'PriorMatch' },
+        { key = 'UpArrow', mods = 'NONE', action = act.CopyMode 'PriorMatch' },
+        { key = 'LeftArrow', mods = 'NONE', action = act.CopyMode 'PriorMatch' },
+        { key = 'DownArrow', mods = 'NONE', action = act.CopyMode 'NextMatch' },
+        { key = 'RightArrow', mods = 'NONE', action = act.CopyMode 'NextMatch' },
+
+        { key = 'PageUp', mods = 'NONE', action = act.CopyMode 'PriorMatchPage' },
+        { key = 'PageDown', mods = 'NONE', action = act.CopyMode 'NextMatchPage' },
+    },
     }
-    }
+
+    merge(config.key_tables.copy_mode, common_copy_search)
+    merge(config.key_tables.search_mode, common_copy_search)
 end
 
 return module
