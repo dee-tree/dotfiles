@@ -43,6 +43,6 @@ fi
 if [[ $setup_neovim == true ]]; then
     echo "Setup neovim"
     # TODO: use $XDG_CONFIG_HOME
-    ln -s "$root/neovim/init.lua" "$homedir/.config/neovim/init.lua"
-    ln -s "$root/neovim/lua" "$homedir/.config/neovim/lua"
+    ln -s "$root/neovim/init.lua" "$homedir/.config/nvim/init.lua"
+    ln -s "$root/neovim/lua" "$homedir/.config/nvim/lua"
 fi
