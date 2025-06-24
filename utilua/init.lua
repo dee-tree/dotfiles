@@ -15,7 +15,19 @@ function onprequire(mod, action)
     end
 end
 
+--- merges table `from` into table `to`
+function merge(to, from)
+    for k,v in ipairs(from) do table.insert(to, v) end -- [k] = v end
+    return to
+end
+
+function isempty(s)
+  return s == nil or s == ''
+end
+
 module.prequire = prequire
 module.onprequire = onprequire
+module.merge = merge
+module.isemtpy = isempty
 
 return module
