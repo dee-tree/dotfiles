@@ -6,7 +6,7 @@ function module.apply_to_config(config)
     config.initial_rows = 28
 
     config.font_size = 11
-    config.color_scheme = 'OneDark (base16)'
+    config.color_scheme = 'Catppuccin Macchiato'
 
     config.use_fancy_tab_bar = false
     config.tab_bar_at_bottom = true

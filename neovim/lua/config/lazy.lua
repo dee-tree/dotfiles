@@ -28,6 +28,6 @@ local plugins = {
 
 require("lazy").setup({
     spec = plugins,
-    install = { colorscheme = { "onenord" }},
+    install = { colorscheme = { "catppuccin" }},
     checker = { enabled = true },
 })
