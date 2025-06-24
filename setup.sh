@@ -6,10 +6,8 @@ root=$(dirname $(realpath "$0"))
 setup_wezterm_init=$setup_wezterm
 setup_zsh_init=$setup_zsh
 
-[[ !($skip_wezterm) && !($setup_wezterm_init || $setup_neovim_init || $setup_ohmyposh_init || $setup_zsh_init) || $setup_wezterm_init ]] &&
-setup_wezterm=true || setup_wezterm=false
-[[ !($skip_zsh) && !($setup_wezterm_init || $setup_neovim_init || $setup_ohmyposh_init || $setup_zsh_init) || $setup_zsh_init ]] && setup_zs
-h=true || setup_zsh=false
+[[ !($skip_wezterm) && !($setup_wezterm_init || $setup_neovim_init || $setup_ohmyposh_init || $setup_zsh_init) || $setup_wezterm_init ]] && setup_wezterm=true || setup_wezterm=false
+[[ !($skip_zsh) && !($setup_wezterm_init || $setup_neovim_init || $setup_ohmyposh_init || $setup_zsh_init) || $setup_zsh_init ]] && setup_zsh=true || setup_zsh=false
 
 echo "wezterm.lua: $root/wezterm/wezterm.lua"
 echo "homedir: $homedir"
