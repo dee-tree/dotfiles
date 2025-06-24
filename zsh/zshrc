@@ -1,7 +1,6 @@
 
 ZSH_CFG_DIR=~/.zsh
 if [[ -d $ZSH_CFG_DIR ]]; then
-  shopt -s nullglob
   for cfgfile in $ZSH_CFG_DIR/*.sh; do
     source "$cfgfile"
   done
@@ -10,7 +9,13 @@ fi
 # ZSH_THEME="powerlevel10k/powerlevel10k"
 HYPHEN_INSENSITIVE="true"
 
-plugins=(git zsh-autosuggestions zsh-syntax-highlighting fast-syntax-highlighting zsh-autocomplete)
+plugins=(
+  git
+  zsh-autosuggestions
+  zsh-syntax-highlighting
+  fast-syntax-highlighting
+  zsh-autocomplete
+)
 
 source $ZSH/oh-my-zsh.sh
 unsetopt BEEP

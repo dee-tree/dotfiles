@@ -9,8 +9,8 @@
       "alignment": "left",
       "segments": [
         {
-          "background": "#abb2bf",
-          "foreground": "#262A32",
+          "background": "7",
+          "foreground": "transparent",
           "leading_diamond": "\ue0b6",
           "style": "diamond",
           "template": " {{ if .WSL }}WSL at {{ end }}{{.Icon}} ",
@@ -43,7 +43,15 @@
           "foreground": "#000000",
           "powerline_symbol": "\ue0bc",
           "style": "powerline",
-          "template": " {{ .HEAD }} ",
+          "properties": {
+            "style": "full",
+            "fetch_upstream_icon": true,
+            "fetch_status": true,
+            "branch_icon": "\uF126 "
+          },
+          // "template": "{{ .UpstreamIcon }} {{ .HEAD }}{{if .BranchStatus }} {{ .BranchStatus }}{{ end }}{{ if .Working.Changed }}  {{ .Working.String }}{{ end }}{{ if and (.Working.Changed) (.Staging.Changed) }} |{{ end }}{{ if .Staging.Changed }}  {{ .Staging.String }}{{ end }}{{ if gt .StashCount 0 }}  {{ .StashCount }}{{ end }}",
+          "template": "{{ .UpstreamIcon }} {{ .HEAD }}{{ if .Working.Changed }} {{ .Working.String }}{{ end }}{{ if and (.Working.Changed) (.Staging.Changed) }} |{{ end }}{{ if .Staging.Changed }}  {{ .Staging.String }}{{ end }}{{ if gt .StashCount 0 }}  {{ .StashCount }}{{ end }}",
+          // "template": " {{ .HEAD }} ",
           "type": "git"
         }
       ],
