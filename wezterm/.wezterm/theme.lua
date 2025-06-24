@@ -2,10 +2,6 @@ local wezterm = require 'wezterm'
 local module = {}
 
 function module.apply_to_config(config)
-    config.initial_cols = 120
-    config.initial_rows = 28
-
-    config.font_size = 11
     config.color_scheme = 'Catppuccin Macchiato'
 
     config.use_fancy_tab_bar = false
@@ -13,15 +9,6 @@ function module.apply_to_config(config)
     config.hide_tab_bar_if_only_one_tab = false -- should be shown if statusline plugins are used
     config.tab_max_width = 16
     config.window_background_opacity = 0.85
-    config.font = wezterm.font_with_fallback {
-        'JetBrainsMono Nerd Font',
-        'JetBrains Mono',
-        'MesloLGS NF',
-        'Fira Code'
-    }
-    config.switch_to_last_active_tab_when_closing_tab = true
-    config.adjust_window_size_when_changing_font_size = false
-    config.disable_default_key_bindings = true -- may be commented
 
     -- window theme
     config.window_decorations = "INTEGRATED_BUTTONS|RESIZE"

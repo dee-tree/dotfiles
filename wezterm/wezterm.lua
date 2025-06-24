@@ -14,6 +14,9 @@ domains.apply_to_config(config)
 plugins = require 'plugins'
 plugins.apply_to_config(config)
 
+opts = require 'options'
+opts.apply_to_config(config)
+
 -- Windows specific
 onWindows = wezterm.target_triple == 'x86_64-pc-windows-msvc'
 if onWindows then

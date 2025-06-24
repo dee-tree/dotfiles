@@ -42,6 +42,12 @@
     "terminal.integrated.rightClickBehavior": "default",
     "telemetry.enableTelemetry": false,
 
+    "catppuccin.accentColor": "lavender",
+    "catppuccin.italicKeywords": false,
+    "catppuccin.italicComments": false,
+    "catppuccin.boldKeywords": true,
+
+    "editor.semanticHighlighting.enabled": true,
     "workbench.colorCustomizations": {
     "[Catppuccin Macchiato]": {
         // previous2 background color (bit lighter): #292C35
@@ -93,14 +99,6 @@
         "quickInput.background": "#262A32",
         "quickInputList.focusBackground": "#4a5164",
         "quickInputList.focusForeground": "#cfd2db",
-        // "button.background": "#434856",
-        "button.background": "#715a8d",
-        "button.hoverBackground": "#9677bd",
-        "button.foreground": "#e8e8e8",
-        "extensionButton.prominentForeground": "#e8e8e8",
-
-        // "sideBarTitle.foreground": "#e8e8e8",
-        // "sideBarSectionHeader.foreground": "#e8e8e8",
 
         "terminal.background": "#262A32",
         "commandCenter.background": "#262A32",
@@ -190,6 +188,7 @@
             },
     ],
         "comments": "#6e86a1",
+        // "comments": "#9399b2",
     }
     },
 }
