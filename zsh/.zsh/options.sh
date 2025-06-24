@@ -10,3 +10,8 @@ zstyle ':completion:*' cache-path ~/.zsh/cache
 zstyle ':autocomplete:*' widget-style menu-select
 zstyle ':autocomplete:*' list-lines 10
 zstyle ':completion:*' menu select=long
+
+zmodload zsh/complist
+# some bindings are going to be here
+bindkey -M menuselect '\r' accept-line
+
