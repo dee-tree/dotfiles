@@ -19,7 +19,7 @@ function vmap(shortcut, command, norec)
   map('v', shortcut, command, norec)
 end
 
-vim.g.mapleader = ","
+vim.g.mapleader = " "
 
 nmap('<C-s>', ':w<CR>', false)       -- save file
 imap('<C-s>', '<ESC>:w<CR>', false)  -- save file

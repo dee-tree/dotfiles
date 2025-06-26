@@ -1,18 +1,52 @@
 return {
     'nvim-treesitter/nvim-treesitter',
     lazy = false,
-    branch = 'main',
+    -- branch = 'main', --  return to main later, when it will be more stable
+    tag = "v0.10.0", -- don't forget to update when 'ft_to_lang' exception will be fixed
     build = ':TSUpdate',
 
     config = function()
-      require 'nvim-treesitter'.setup {
-        -- Directory to install parsers and queries to
-        install_dir = vim.fn.stdpath('data') .. '/site'
-      }
-      require 'nvim-treesitter.install'.compilers = { "clang", "gcc" }
-      require 'nvim-treesitter'.install {
-        'rust',
-        'javascript'
-      }
-    end
+      local cfg = require("nvim-treesitter.configs")
+      cfg.setup({
+        highlight = { enable = true },
+        ensure_installed = {
+          'bash',
+          'cmake',
+          'comment',
+          'dockerfile',
+          'diff',
+          'git_config',
+          'git_rebase',
+          'gitcommit',
+          'gitignore',
+          'html',
+          'gpg',
+          'javascript',
+          'json',
+          'jsonc',
+          'lua',
+          'luadoc',
+          'luap',
+          'markdown',
+          'markdown_inline',
+          'printf',
+          'python',
+          'query',
+          'regex',
+          'ssh_config',
+          'toml',
+          'typescript',
+          'vim',
+          'vimdoc',
+          'xml',
+          'yaml',
+
+          'c',
+          'cpp',
+          'java',
+          'javadoc',
+          'kotlin',
+        },
+      })
+    end,
 }
