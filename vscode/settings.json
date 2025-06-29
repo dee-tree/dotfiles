@@ -48,6 +48,7 @@
     "catppuccin.boldKeywords": true,
 
     "editor.semanticHighlighting.enabled": true,
+
     "workbench.colorCustomizations": {
     "[Catppuccin Macchiato]": {
         // previous2 background color (bit lighter): #292C35
@@ -109,12 +110,12 @@
         "editorBracketMatch.background": "#4a4f5f",
         "editorBracketMatch.border": "#7a829c",
 
-        "editorBracketHighlight.foreground1": "#d08770",
-        "editorBracketHighlight.foreground2": "#b48ead",
-        "editorBracketHighlight.foreground3": "#9d96ff",
-        "editorBracketHighlight.foreground4": "#68b6ff",
-        "editorBracketHighlight.foreground5": "#86b5eb",
-        "editorBracketHighlight.foreground6": "#a4d3bc",
+        "editorBracketHighlight.foreground1": "#f5a97f",
+        "editorBracketHighlight.foreground2": "#eed49f",
+        "editorBracketHighlight.foreground3": "#a6da95",
+        "editorBracketHighlight.foreground4": "#86b5eb",
+        "editorBracketHighlight.foreground5": "#68b6ff",
+        "editorBracketHighlight.foreground6": "#9d96ff",
 
         "editorRuler.foreground": "#34414e"
     }
