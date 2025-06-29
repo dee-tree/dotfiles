@@ -67,12 +67,16 @@ nmap('<leader>p', ':vsplit<CR>', false)
 
 -- telescope
 nmap('<leader>ff', '<cmd>Telescope find_files<cr>', false)
+nmap('<leader>f', '<cmd>Telescope find_files<cr>', false)
 nmap('<leader>fg', '<cmd>Telescope live_grep<cr>', false)
+nmap('<leader>g', '<cmd>Telescope live_grep<cr>', false)
 nmap('<leader>fb', '<cmd>Telescope buffers<cr>', false)
 nmap('<leader>fh', '<cmd>Telescope help_tags<cr>', false)
 
 -- neotree bindings --
-nmap('<leader>e', '<Cmd>Neotree reveal<CR>', false)
+nmap('<leader>e', '<cmd>Neotree reveal<cr>', false)
+
+nmap('<leader>;', '<cmd>Noice pick<cr>', false)
 
 -- neotree windows movement
 -- nmap('<A-left>', '<C-w>h', false)
