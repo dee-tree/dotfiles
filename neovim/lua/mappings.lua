@@ -67,9 +67,7 @@ nmap('<leader>p', ':vsplit<CR>', false)
 
 -- telescope
 nmap('<leader>ff', '<cmd>Telescope find_files<cr>', false)
-nmap('<leader>f', '<cmd>Telescope find_files<cr>', false)
 nmap('<leader>fg', '<cmd>Telescope live_grep<cr>', false)
-nmap('<leader>g', '<cmd>Telescope live_grep<cr>', false)
 nmap('<leader>fb', '<cmd>Telescope buffers<cr>', false)
 nmap('<leader>fh', '<cmd>Telescope help_tags<cr>', false)
 
