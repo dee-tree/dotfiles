@@ -19,6 +19,10 @@ function vmap(shortcut, command, norec)
   map('v', shortcut, command, norec)
 end
 
+function tmap(shortcut, command, norec)
+  map('t', shortcut, command, norec)
+end
+
 vim.g.mapleader = " "
 
 nmap('<C-s>', ':w<CR>', false)       -- save file
@@ -60,21 +64,20 @@ nmap('<leader>w', ':w<CR>', false)
 
 -- nmap('<leader>d', ':vsplit<CR>', false)
 -- nmap('<leader>f', ':split<CR>', false)
-nmap('<leader>i', ':split<CR>', false)
-nmap('<leader>o', ':split<CR>', false)
-nmap('<leader>u', ':vsplit<CR>', false)
-nmap('<leader>p', ':vsplit<CR>', false)
+nmap('<leader>u', '<cmd>leftabove vnew<cr>', true)
+nmap('<leader>p', '<cmd>rightbelow vnew<cr>', true)
+nmap('<leader>i', '<cmd>rightbelow new<cr>', true)
+nmap('<leader>o', '<cmd>leftabove new<cr>', true)
 
 -- telescope
-nmap('<leader>ff', '<cmd>Telescope find_files<cr>', false)
-nmap('<leader>fg', '<cmd>Telescope live_grep<cr>', false)
-nmap('<leader>fb', '<cmd>Telescope buffers<cr>', false)
-nmap('<leader>fh', '<cmd>Telescope help_tags<cr>', false)
+nmap('<leader>ff', '<cmd>Telescope find_files<cr>', true)
+nmap('<leader>fg', '<cmd>Telescope live_grep<cr>', true)
+nmap('<leader>fh', '<cmd>Telescope help_tags<cr>', true)
 
 -- neotree bindings --
-nmap('<leader>e', '<cmd>Neotree reveal<cr>', false)
+nmap('<leader>e', '<cmd>Neotree reveal<cr>', true)
 
-nmap('<leader>;', '<cmd>Noice pick<cr>', false)
+nmap('<leader>;', '<cmd>Noice pick<cr>', true)
 
 -- neotree windows movement
 -- nmap('<A-left>', '<C-w>h', false)
@@ -100,3 +103,10 @@ nmap('<leader>;', '<cmd>Noice pick<cr>', false)
 -- nmap('<A-l>', ':wincmd k<CR>', true)
 -- nmap('<A-;>', ':wincmd l<CR>', true)
 --                            --
+
+tmap('<Esc>', '<C-\\><C-n>', true) -- exit from terminal
+
+tmap('<C-BS>', '<C-\\><C-o>dB', true)
+tmap('<C-H>', '<C-\\><C-o>dB', true) -- Ctrl-H == Ctrl-Backspace for some terminals
+imap('<C-BS>', '<C-\\><C-o>dB', true)
+imap('<C-H>', '<C-\\><C-o>dB', true) -- Ctrl-H == Ctrl-Backspace for some terminals
