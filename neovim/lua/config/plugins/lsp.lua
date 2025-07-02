@@ -1,5 +1,6 @@
 return {
     "neovim/nvim-lspconfig",
+    -- event = { "BufReadPre", "BufNewFile" },
     dependencies = {
         {
             "mason-org/mason-lspconfig.nvim",
@@ -14,6 +15,11 @@ return {
     },
     },
     config = function()
+        local cfg = require('lspconfig')
 
+        vim.diagnostic.config({
+            virtual_text = true,
+            underline = true
+        })
     end
 }
