@@ -10,7 +10,19 @@ return {
                 },
                 opts = {
                     ensure_installed = {
-                        "lua_ls"
+                        "lua_ls",
+                        "rust_analyzer",
+                        "bashls",
+                        "clangd",
+                        "cmake",
+
+                        "jsonls",
+
+                        "java_language_server",
+
+                        "kotlin_lsp",
+
+                        "yamlls",
                     },
                 },
         },
