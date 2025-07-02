@@ -19,6 +19,9 @@ function module.apply_to_config(config)
     config.adjust_window_size_when_changing_font_size = false
     config.disable_default_key_bindings = true -- may be commented
 
+    config.enable_kitty_keyboard = true -- to handle Ctrl+Enter and other sequences
+    config.allow_win32_input_mode = false
+
     if haslocaloptions then
         localoptions.apply_to_config(config)
     end

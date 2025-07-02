@@ -55,6 +55,10 @@ nmap(';', 'l', false)
 vmap(';', 'l', false)
 omap(';', 'l', false)
 
+-- stay in visual mode for indent/unindent
+vmap('<', '<gv', true)
+vmap('>', '>gv', true)
+
  -- copy to system clipboard
 nmap('cp', '"+y', false)
 vmap('cp', '"+y', false)
@@ -110,3 +114,7 @@ tmap('<C-BS>', '<C-\\><C-o>dB', true)
 tmap('<C-H>', '<C-\\><C-o>dB', true) -- Ctrl-H == Ctrl-Backspace for some terminals
 imap('<C-BS>', '<C-\\><C-o>dB', true)
 imap('<C-H>', '<C-\\><C-o>dB', true) -- Ctrl-H == Ctrl-Backspace for some terminals
+
+
+-- LSP & completion
+imap('<C-Space>', '<cmd>lua vim.lsp.completion.trigger()<cr>', true)
