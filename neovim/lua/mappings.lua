@@ -118,3 +118,12 @@ imap('<C-H>', '<C-\\><C-o>dB', true) -- Ctrl-H == Ctrl-Backspace for some termin
 
 -- LSP & completion
 imap('<C-Space>', '<cmd>lua vim.lsp.completion.trigger()<cr>', true)
+vim.keymap.set('n', '<leader>ds', vim.diagnostic.open_float, { desc = "Show diagnostics" })
+
+vim.keymap.set('n', '<leader>dv', function()
+    vim.diagnostic.enable(not vim.diagnostic.is_enabled())
+end, { silent = true, noremap = true })
+
+vim.keymap.set("n", "K", function()
+    vim.lsp.buf.hover { border = 'rounded', max_height = 25, max_width = 120 }
+end)

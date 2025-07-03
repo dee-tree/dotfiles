@@ -17,12 +17,6 @@ return {
                         "cmake",
 
                         "jsonls",
-
-                        "java_language_server",
-
-                        "kotlin_lsp",
-
-                        "yamlls",
                     },
                 },
         },
@@ -31,20 +25,24 @@ return {
             local cfg = require('lspconfig')
 
             vim.diagnostic.config({
-                virtual_text = true,
-                underline = true
+                virtual_text = {
+                    source = 'if_many',
+                    prefix = "●",
+                    spacing = 2,
+                },
+
+                underline = true,
+                severity_sort = true,
+                signs = {
+                    active = true,
+                    text = {
+                      [vim.diagnostic.severity.ERROR] = '',
+                      [vim.diagnostic.severity.WARN]  = '',
+                      [vim.diagnostic.severity.HINT]  = '',
+                      [vim.diagnostic.severity.INFO]  = '',
+                    }
+                }
             })
-
-            local signs = {
-                { name = 'DiagnosticSignError', text = '' },
-                { name = 'DiagnosticSignWarn', text = '' },
-                { name = 'DiagnosticSignHint', text = '' },
-                { name = 'DiagnosticSignInfo', text = '' },
-            }
-
-            for _, sign in ipairs(signs) do
-                vim.fn.sign_define(sign.name, { texthl = sign.name, text = sign.text, numhl = '' })
-            end
         end
     },
     {
