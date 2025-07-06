@@ -1,4 +1,3 @@
-local wezterm = require 'wezterm'
 local module = {}
 
 function module.apply_to_config(config)
@@ -8,7 +7,7 @@ function module.apply_to_config(config)
     config.tab_bar_at_bottom = true
     config.hide_tab_bar_if_only_one_tab = false -- should be shown if statusline plugins are used
     config.tab_max_width = 16
-    config.window_background_opacity = 0.9
+    config.window_background_opacity = 0.925
 
     -- window theme
     config.window_decorations = "INTEGRATED_BUTTONS|RESIZE"

@@ -45,12 +45,29 @@ return {
                 ["l"] = require("telescope.actions").move_selection_previous,
                 ["<C-LeftMouse>"] = require("telescope.actions").select_tab,
                 ["<C-CR>"] = require("telescope.actions").select_tab,
-                },
+                ["i"] = require("telescope.actions").preview_scrolling_down,
+                ["o"] = require("telescope.actions").preview_scrolling_up,
             },
             i = {
                 ["<C-LeftMouse>"] = require("telescope.actions").select_tab,
                 ["<C-CR>"] = require("telescope.actions").select_tab,
+                ["<C-k>"] = require("telescope.actions").preview_scrolling_down,
+                ["<C-l>"] = require("telescope.actions").preview_scrolling_up,
+                ["<C-c>"] = function()
+                    local entry = require("telescope.actions.state").get_selected_entry()
+                    local value = entry.value
+                    local cb_opts = vim.opt.clipboard:get()
+                    if entry.path then
+                        value = entry.path
+                    end
+                    if vim.tbl_contains(cb_opts, "unnamed") then vim.fn.setreg("*", value) end
+                    if vim.tbl_contains(cb_opts, "unnamedplus") then
+                        vim.fn.setreg("+", value)
+                    end
+                    vim.fn.setreg("", value)
+                end
             }
+        },
         },
         extensions = {
             fzf = {
@@ -58,5 +75,5 @@ return {
                 case_mode = "smart_case",
             }
         }
-    }
+    },
 }

@@ -1,87 +1,71 @@
-
-function map(mode, shortcut, command, rec)
-  vim.api.nvim_set_keymap(mode, shortcut, command, { noremap = not rec, silent = true })
+local function map(mode, lhs, rhs, opts)
+    local options = { noremap = true }
+    if opts then options = vim.tbl_extend('force', options, opts) end
+    vim.keymap.set(mode, lhs, rhs, options)
 end
 
-function nmap(shortcut, command, norec)
-  map('n', shortcut, command, norec)
+function nmap(lhs, rhs, opts)
+  map('n', lhs, rhs, opts)
 end
 
-function imap(shortcut, command, norec)
-  map('i', shortcut, command, norec)
+function imap(lhs, rhs, opts)
+  map('i', lhs, rhs, opts)
 end
 
-function omap(shortcut, command, norec)
-  map('o', shortcut, command, norec)
+function omap(lhs, rhs, opts)
+  map('o', lhs, rhs, opts)
 end
 
-function vmap(shortcut, command, norec)
-  map('v', shortcut, command, norec)
+function vmap(lhs, rhs, opts)
+  map('v', lhs, rhs, opts)
 end
 
-function tmap(shortcut, command, norec)
-  map('t', shortcut, command, norec)
+function tmap(lhs, rhs, opts)
+  map('t', lhs, rhs, opts)
 end
 
 vim.g.mapleader = " "
 
-nmap('<C-s>', ':w<CR>', false)       -- save file
-imap('<C-s>', '<ESC>:w<CR>', false)  -- save file
+-- nmap('<C-s>', ':w<CR>', false)       -- save file
+-- imap('<C-s>', '<ESC>:w<CR>', false)  -- save file
 
-nmap('<C-a>', 'ggVG', false)      -- select all
-imap('<C-a>', '<ESC>ggVG', false) -- select all
+nmap('<C-a>', 'ggVG')      -- select all
+imap('<C-a>', '<ESC>ggVG') -- select all
 
-nmap('<C-c>', '"+y', false) -- yank to clipboard
-vmap('<C-c>', '"+y', false) -- yank to clipboard
+map({'n', 'v'}, '<C-c>', '"+y') -- yank to clipboard
+map({'n', 'v'}, 'cp', '"+y')
 
-nmap('<A-j>', ':wincmd H<CR>', true)
-nmap('<A-k>', ':wincmd J<CR>', true)
-nmap('<A-l>', ':wincmd K<CR>', true)
-nmap('<A-;>', ':wincmd L<CR>', true)
+nmap('<A-j>', ':wincmd H<CR>')
+nmap('<A-k>', ':wincmd J<CR>')
+nmap('<A-l>', ':wincmd K<CR>')
+nmap('<A-;>', ':wincmd L<CR>')
 
-nmap('j', 'h', false)
-vmap('j', 'h', false)
-omap('j', 'h', false)
-
-nmap('k', 'j', false)
-vmap('k', 'j', false)
-omap('k', 'j', false)
-
-nmap('l', 'k', false)
-vmap('l', 'k', false)
-omap('l', 'k', false)
-
-nmap(';', 'l', false)
-vmap(';', 'l', false)
-omap(';', 'l', false)
+map({'n', 'v', 'o'}, 'j', 'h')
+map({'n', 'v', 'o'}, 'k', 'j')
+map({'n', 'v', 'o'}, 'l', 'k')
+map({'n', 'v', 'o'}, ';', 'l')
 
 -- stay in visual mode for indent/unindent
-vmap('<', '<gv', true)
-vmap('>', '>gv', true)
+vmap('<', '<gv')
+vmap('>', '>gv')
 
- -- copy to system clipboard
-nmap('cp', '"+y', false)
-vmap('cp', '"+y', false)
+nmap('<leader>q', ':q!<CR>')
+nmap('<leader>w', ':w<CR>')
 
-nmap('<leader>q', ':q!<CR>', false)
-nmap('<leader>w', ':w<CR>', false)
-
--- nmap('<leader>d', ':vsplit<CR>', false)
--- nmap('<leader>f', ':split<CR>', false)
-nmap('<leader>u', '<cmd>leftabove vnew<cr>', true)
-nmap('<leader>p', '<cmd>rightbelow vnew<cr>', true)
-nmap('<leader>i', '<cmd>rightbelow new<cr>', true)
-nmap('<leader>o', '<cmd>leftabove new<cr>', true)
+nmap('<leader>u', '<cmd>leftabove vnew<cr>')
+nmap('<leader>p', '<cmd>rightbelow vnew<cr>')
+nmap('<leader>i', '<cmd>rightbelow new<cr>')
+nmap('<leader>o', '<cmd>leftabove new<cr>')
 
 -- telescope
-nmap('<leader>ff', '<cmd>Telescope find_files<cr>', true)
-nmap('<leader>fg', '<cmd>Telescope live_grep<cr>', true)
-nmap('<leader>fh', '<cmd>Telescope help_tags<cr>', true)
+nmap('<leader>ff', '<cmd>Telescope find_files<cr>')
+nmap('<leader>fg', '<cmd>Telescope live_grep<cr>')
+nmap('<leader>fh', '<cmd>Telescope help_tags<cr>')
+nmap('<leader>fk', '<cmd>Telescope keymaps<cr>', { desc = "Telescope find keymaps" })
 
 -- neotree bindings --
-nmap('<leader>e', '<cmd>Neotree reveal<cr>', true)
-
-nmap('<leader>;', '<cmd>Noice pick<cr>', true)
+nmap('<leader>e', '<cmd>Neotree reveal<cr>')
+nmap('<leader>;', '<cmd>Noice pick<cr>')
 
 -- neotree windows movement
 -- nmap('<A-left>', '<C-w>h', false)
@@ -108,22 +92,20 @@ nmap('<leader>;', '<cmd>Noice pick<cr>', true)
 -- nmap('<A-;>', ':wincmd l<CR>', true)
 --                            --
 
-tmap('<Esc>', '<C-\\><C-n>', true) -- exit from terminal
+tmap('<Esc>', '<C-\\><C-n>') -- exit from terminal
 
-tmap('<C-BS>', '<C-\\><C-o>dB', true)
-tmap('<C-H>', '<C-\\><C-o>dB', true) -- Ctrl-H == Ctrl-Backspace for some terminals
-imap('<C-BS>', '<C-\\><C-o>dB', true)
-imap('<C-H>', '<C-\\><C-o>dB', true) -- Ctrl-H == Ctrl-Backspace for some terminals
-
+map({'t', 'i'}, '<C-BS>', '<C-\\><C-o>dB')
+-- tmap('<C-H>', '<C-\\><C-o>dB', true) -- Ctrl-H == Ctrl-Backspace for some terminals
+-- imap('<C-H>', '<C-\\><C-o>dB', true) -- Ctrl-H == Ctrl-Backspace for some terminals
 
 -- LSP & completion
-imap('<C-Space>', '<cmd>lua vim.lsp.completion.trigger()<cr>', true)
-vim.keymap.set('n', '<leader>ds', vim.diagnostic.open_float, { desc = "Show diagnostics" })
+imap('<C-Space>', '<cmd>lua vim.lsp.completion.trigger()<cr>')
+nmap('<leader>ds', vim.diagnostic.open_float, { desc = "Show diagnostics" })
+nmap('<leader>dv', function() vim.diagnostic.enable(not vim.diagnostic.is_enabled()) end)
+nmap('K', function() vim.lsp.buf.hover { border = 'rounded', max_height = 25, max_width = 120 } end)
+nmap('<leader>rn', vim.lsp.buf.rename, { desc = 'LSP: rename' })
+nmap('gd', vim.lsp.buf.definition)
+nmap('gD', vim.lsp.buf.declaration)
+nmap('gi', vim.lsp.buf.implementation)
+nmap('gr', vim.lsp.buf.references)
 
-vim.keymap.set('n', '<leader>dv', function()
-    vim.diagnostic.enable(not vim.diagnostic.is_enabled())
-end, { silent = true, noremap = true })
-
-vim.keymap.set("n", "K", function()
-    vim.lsp.buf.hover { border = 'rounded', max_height = 25, max_width = 120 }
-end)
