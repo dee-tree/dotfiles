@@ -29,8 +29,13 @@ return {
             end,
             desc = "Show buffers"
         },
-
-        
+        {
+            "<leader>fl",
+            function()
+                vim.cmd('Flog')
+            end,
+            desc = "Show git log"
+        },
     },
     opts = {
         pickers = {
@@ -65,7 +70,10 @@ return {
                         vim.fn.setreg("+", value)
                     end
                     vim.fn.setreg("", value)
-                end
+                end,
+                -- until Telescope 0.2.0
+                -- ["<C-j>"] = require('telescope.actions').preview_scrolling_left,
+                -- ["<C-;>"] = require('telescope.actions').preview_scrolling_right,
             }
         },
         },

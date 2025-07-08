@@ -1,0 +1,51 @@
+# just include delta.config in your .gitconfig file:
+# [include]
+#    path = ~/src/devenv/dotfiles/delta/delta.gitconfig
+
+[core]
+    pager = delta
+    editor = nvim
+
+[pager]
+    blame = delta
+    diff = delta
+    reflog = delta
+    show = delta
+
+[interactive]
+    diffFilter = delta --color-only
+
+[delta]
+    navigate = true  # use n and N to move between diff sections
+    dark = true
+    side-by-side = true
+    line-numbers = true
+    navigate = true
+    syntax-theme = OneHalfDark
+
+[merge]
+    tool = nvimmerge
+    conflictstyle = zdiff3
+    autoStash = true
+
+[mergetool "nvimmerge"]
+    cmd = nvim -d $LOCAL $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
+
+[difftool "nvimdiff"]
+    cmd = nvim -d $LOCAL $REMOTE
+
+[rebase]
+    autoStash = true
+
+[diff]
+    tool = nvimdiff
+	algorithm = histogram
+    colorMoved = dimmed-zebra
+    mnemonicPrefix = true
+
+[push]
+    autoSetupRemote = true
+    followTags = true
+    
+[init]
+  defaultBranch = main

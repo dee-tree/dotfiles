@@ -30,7 +30,7 @@ vim.g.mapleader = " "
 -- imap('<C-s>', '<ESC>:w<CR>', false)  -- save file
 
 nmap('<C-a>', 'ggVG')      -- select all
-imap('<C-a>', '<ESC>ggVG') -- select all
+map({'i', 'v'},'<C-a>', '<ESC>ggVG') -- select all
 
 map({'n', 'v'}, '<C-c>', '"+y') -- yank to clipboard
 map({'n', 'v'}, 'cp', '"+y')
