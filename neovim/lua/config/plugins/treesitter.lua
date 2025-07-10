@@ -9,6 +9,14 @@ return {
       local cfg = require("nvim-treesitter.configs")
       cfg.setup({
         highlight = { enable = true },
+        incremental_selection = {
+            enable = true,
+            keymaps = {
+                init_selection = 'v',
+                node_incremental = 'v',
+                node_decremental = 'V',
+            },
+        },
         ensure_installed = {
           'bash',
           'cmake',

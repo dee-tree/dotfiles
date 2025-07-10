@@ -27,7 +27,7 @@ return {
                     cwd = vim.fn.stdpath('config')
                 }
             end,
-            desc = "Show buffers"
+            desc = "Show nvim config"
         },
         {
             "<leader>fl",
@@ -52,6 +52,11 @@ return {
                 ["<C-CR>"] = require("telescope.actions").select_tab,
                 ["i"] = require("telescope.actions").preview_scrolling_down,
                 ["o"] = require("telescope.actions").preview_scrolling_up,
+                ["<RightMouse>"] = require("telescope.actions").close,
+                ["<LeftMouse>"] = require("telescope.actions").select_default,
+                ["<ScrollWheelDown>"] = require("telescope.actions").move_selection_next,
+                ["<ScrollWheelUp>"] = require("telescope.actions").move_selection_previous,
+
             },
             i = {
                 ["<C-LeftMouse>"] = require("telescope.actions").select_tab,
@@ -71,6 +76,11 @@ return {
                     end
                     vim.fn.setreg("", value)
                 end,
+                ["<RightMouse>"] = require("telescope.actions").close,
+                ["<LeftMouse>"] = require("telescope.actions").select_default,
+                ["<ScrollWheelDown>"] = require("telescope.actions").move_selection_next,
+                ["<ScrollWheelUp>"] = require("telescope.actions").move_selection_previous,
+
                 -- until Telescope 0.2.0
                 -- ["<C-j>"] = require('telescope.actions').preview_scrolling_left,
                 -- ["<C-;>"] = require('telescope.actions').preview_scrolling_right,
@@ -85,3 +95,4 @@ return {
         }
     },
 }
+
