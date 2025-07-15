@@ -8,6 +8,7 @@ return {
             build = (build_cmd ~= "cmake") and "make"
             or "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build",
         },
+        'debugloop/telescope-undo.nvim',
     },
     keys = {
         {
@@ -35,6 +36,9 @@ return {
                 vim.cmd('Flog')
             end,
             desc = "Show git log"
+        },
+        {
+            "<leader>fu", "<cmd>Telescope undo<cr>", desc = "Show undo tree"
         },
     },
     opts = {
@@ -91,7 +95,15 @@ return {
             fzf = {
                 fuzzy = true,
                 case_mode = "smart_case",
-            }
+            },
+            undo = {
+                side_by_side = false,
+                layout_strategy = 'vertical',
+                layout_config = {
+                    preview_cutoff = 10,
+                    preview_height = 0.5,
+                }
+            },
         }
     },
 }

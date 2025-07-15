@@ -13,6 +13,7 @@ opt.smartindent = true
 opt.wrap = false
 opt.mouse = 'a'
 opt.completeopt = {'menu', 'menuone', 'noselect'}
+opt.undofile = true
 
 opt.splitbelow = true -- open new vertical split bottom
 opt.splitright = true -- open new horizontal splits right
