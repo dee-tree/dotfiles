@@ -24,10 +24,20 @@ function tmap(lhs, rhs, opts)
   map('t', lhs, rhs, opts)
 end
 
+function _G.ReloadConfig()
+  for name,_ in pairs(package.loaded) do
+    if name:match('^user') and not name:match('nvim-tree') then
+      package.loaded[name] = nil
+    end
+  end
+
+  dofile(vim.env.MYVIMRC)
+  vim.notify("Nvim configuration reloaded!", vim.log.levels.INFO)
+end
+
 vim.g.mapleader = " "
 
--- nmap('<C-s>', ':w<CR>', false)       -- save file
--- imap('<C-s>', '<ESC>:w<CR>', false)  -- save file
+nmap('<leader>rr', '<cmd>lua ReloadConfig()<cr>')
 
 nmap('<C-a>', 'ggVG')      -- select all
 map({'i', 'v'},'<C-a>', '<ESC>ggVG') -- select all
@@ -35,6 +45,7 @@ map({'i', 'v'},'<C-a>', '<ESC>ggVG') -- select all
 map({'n', 'v'}, '<C-c>', '"+y') -- yank to clipboard
 map({'n', 'v'}, 'cp', '"+y')
 
+-- move pane
 nmap('<A-j>', ':wincmd H<CR>')
 nmap('<A-k>', ':wincmd J<CR>')
 nmap('<A-l>', ':wincmd K<CR>')
@@ -44,6 +55,23 @@ map({'n', 'v', 'o'}, 'j', 'h')
 map({'n', 'v', 'o'}, 'k', 'j')
 map({'n', 'v', 'o'}, 'l', 'k')
 map({'n', 'v', 'o'}, ';', 'l')
+
+-- capitalize word
+nmap('<C-Up>', 'gUiww')
+nmap('<C-Down>', 'guiww')
+
+-- Shift + Up/Down to move line up/down
+nmap('<S-Up>', 'yyddkP')
+nmap('<S-Down>', 'yyddp')
+
+nmap('<C-j>', '<S-h>')
+nmap('<C-;>', '<S-l>')
+
+-- half screen scroll
+nmap('<C-k>', '<C-d>')
+nmap('<C-l>', '<C-u>')
+
+nmap('<C-d>', 'yyp')
 
 -- stay in visual mode for indent/unindent
 vmap('<', '<gv')
@@ -99,7 +127,6 @@ map({'t', 'i'}, '<C-BS>', '<C-\\><C-o>dB')
 -- imap('<C-H>', '<C-\\><C-o>dB', true) -- Ctrl-H == Ctrl-Backspace for some terminals
 
 -- LSP & completion
-imap('<C-Space>', '<cmd>lua vim.lsp.completion.trigger()<cr>')
 nmap('<leader>ds', vim.diagnostic.open_float, { desc = "Show diagnostics" })
 nmap('<leader>dv', function() vim.diagnostic.enable(not vim.diagnostic.is_enabled()) end)
 nmap('K', function() vim.lsp.buf.hover { border = 'rounded', max_height = 25, max_width = 120 } end)
@@ -107,5 +134,5 @@ nmap('<leader>rn', vim.lsp.buf.rename, { desc = 'LSP: rename' })
 nmap('gd', vim.lsp.buf.definition)
 nmap('gD', vim.lsp.buf.declaration)
 nmap('gi', vim.lsp.buf.implementation)
+nmap('gt', vim.lsp.buf.type_definition)
 nmap('gr', vim.lsp.buf.references)
-

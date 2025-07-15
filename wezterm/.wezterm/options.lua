@@ -21,6 +21,7 @@ function module.apply_to_config(config)
 
     -- has a bug (at least on Windows) that after closing neovim, Ctrl does not work anymore
     -- config.enable_kitty_keyboard = true -- to handle Ctrl+Enter and other sequences
+    config.allow_win32_input_mode = false
 
     if haslocaloptions then
         localoptions.apply_to_config(config)

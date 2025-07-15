@@ -2,6 +2,7 @@ local opt = vim.opt
 
 opt.number = true
 opt.relativenumber = true
+opt.cursorline = true
 opt.clipboard:append { "unnamedplus" } -- keep in sync with the system clipboard
 opt.expandtab = true -- use spaces instead of tabs
 local tabsize = 4
@@ -51,4 +52,3 @@ vim.g.clipboard = {
     },
 }
 
-vim.o.winborder = 'rounded';
