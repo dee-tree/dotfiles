@@ -60,7 +60,7 @@ return {
                 ["<LeftMouse>"] = require("telescope.actions").select_default,
                 ["<ScrollWheelDown>"] = require("telescope.actions").move_selection_next,
                 ["<ScrollWheelUp>"] = require("telescope.actions").move_selection_previous,
-
+                ["dd"] = require('telescope.actions').delete_buffer,
             },
             i = {
                 ["<C-LeftMouse>"] = require("telescope.actions").select_tab,
@@ -84,6 +84,7 @@ return {
                 ["<LeftMouse>"] = require("telescope.actions").select_default,
                 ["<ScrollWheelDown>"] = require("telescope.actions").move_selection_next,
                 ["<ScrollWheelUp>"] = require("telescope.actions").move_selection_previous,
+                ["<C-d>"] = require('telescope.actions').delete_buffer,
 
                 -- until Telescope 0.2.0
                 -- ["<C-j>"] = require('telescope.actions').preview_scrolling_left,

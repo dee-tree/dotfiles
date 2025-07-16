@@ -1,6 +1,9 @@
 return {
     'dstein64/nvim-scrollview',
+    branch = 'main',
     config = function(_, opts)
+        local scrollview = require('scrollview')
+        scrollview.setup(opts)
         local gitsigns = require('scrollview.contrib.gitsigns')
         gitsigns.setup(opts)
     end,
@@ -9,8 +12,6 @@ return {
         signs_on_startup = { 'all' },
 
         enabled = true,
-        add_symbol = ' ', -- workaround until find out how to fix white pipes in signs
-        change_symbol = ' ', -- workaround until find out how to fix white pipes in signs
         add_priority = 100,
         change_priority = 100,
         delete_priority = 100,
