@@ -8,12 +8,18 @@ return {
         gitsigns.setup(opts)
     end,
     opts = {
+        enabled = true,
         excluded_filetypes = {'nerdtree', 'neotree'},
         signs_on_startup = { 'all' },
+        signs_scrollbar_overlap = 'over',
+        hide_on_cursor_intersect = true,
+        signs_max_per_row = 1,
 
-        enabled = true,
-        add_priority = 100,
-        change_priority = 100,
-        delete_priority = 100,
+        cursor_priority = 100,
+        diagnostics_error_priority = 96,
+        diagnostics_warn_priority = 95,
+        change_priority = 91,
+        add_priority = 90,
+        delete_priority = 89,
     },
 }
