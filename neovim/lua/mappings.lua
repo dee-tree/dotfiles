@@ -24,6 +24,10 @@ function tmap(lhs, rhs, opts)
   map('t', lhs, rhs, opts)
 end
 
+function xmap(lhs, rhs, opts)
+  map('x', lhs, rhs, opts)
+end
+
 function _G.ReloadConfig()
   for name,_ in pairs(package.loaded) do
     if name:match('^user') and not name:match('nvim-tree') then
@@ -43,7 +47,6 @@ nmap('<C-a>', 'ggVG')      -- select all
 map({'i', 'v'},'<C-a>', '<ESC>ggVG') -- select all
 
 map({'n', 'v'}, '<C-c>', '"+y') -- yank to clipboard
-map({'n', 'v'}, 'cp', '"+y')
 
 -- move pane
 nmap('<A-j>', ':wincmd H<CR>')
@@ -64,18 +67,26 @@ nmap('<C-Down>', 'guiww')
 nmap('<S-Up>', 'yyddkP')
 nmap('<S-Down>', 'yyddp')
 
-nmap('<C-j>', '<S-h>')
-nmap('<C-;>', '<S-l>')
+-- move cursor to top/bottom edge of visible area
+nmap('<PageDown>', '<S-l>')
+nmap('<PageUp>', '<S-h>')
+
+-- horizontal scroll
+nmap('<C-j>', '2zh')
+nmap('<C-;>', '2zl')
 
 -- half screen scroll
-nmap('<C-k>', '<C-d>')
-nmap('<C-l>', '<C-u>')
+nmap('<C-k>', '4<C-e>')
+nmap('<C-l>', '4<C-y>')
 
+-- duplicate line
 nmap('<C-d>', 'yyp')
 
 -- stay in visual mode for indent/unindent
 vmap('<', '<gv')
 vmap('>', '>gv')
+
+nmap('<TAB>', '<S-M>')
 
 nmap('<leader>q', ':q!<CR>')
 nmap('<leader>w', ':w<CR>')
