@@ -1,8 +1,10 @@
 {
     "workbench.colorTheme": "Catppuccin Macchiato",
     "workbench.iconTheme": "catppuccin-macchiato",
-
     "workbench.tree.expandMode": "doubleClick",
+    "workbench.editor.limit.enabled": true,
+    "workbench.editor.limit.perEditorGroup": true,
+    "workbench.editor.limit.value": 10,
 
     "files.autoSave": "afterDelay",
     "files.autoSaveDelay": 500,
