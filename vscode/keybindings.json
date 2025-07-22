@@ -179,4 +179,20 @@
         "key": "ctrl+alt+c",
         "command": "workbench.action.files.copyPathOfActiveFile"
     },
+    {
+        "key": "alt+left",
+        "command": "workbench.action.navigateLeft"
+    },
+    {
+        "key": "alt+right",
+        "command": "workbench.action.navigateRight"
+    },
+    {
+        "key": "alt+down",
+        "command": "workbench.action.navigateDown"
+    },
+    {
+        "key": "alt+up",
+        "command": "workbench.action.navigateUp"
+    },
 ]
