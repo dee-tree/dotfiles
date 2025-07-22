@@ -14,7 +14,7 @@ return {
             neotree = true,
         },
 
-        highlight_overrides = { 
+        highlight_overrides = {
             all = function(colors)
                 return {
                     NeoTreeDirectoryIcon = { fg = colors.lavender },
@@ -23,7 +23,6 @@ return {
                     NeoTreeRootName = { fg = colors.lavender },
                     NeoTreeGitUntracked = { fg = colors.teal },
                 }
-                
             end
         }
     })
