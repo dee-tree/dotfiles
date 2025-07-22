@@ -1,4 +1,5 @@
-
+local default_sources = { 'lazydev', 'lsp', 'path', 'snippets', 'buffer' }
+local debug_sources = vim.list_extend(vim.deepcopy(default_sources), { 'dap' })
 local default_border = 'rounded'
 
 return {
@@ -13,13 +14,23 @@ return {
             })
         end,
     },
+    {
+        'saghen/blink.compat',
+        -- version = '*',
+        lazy = true,
+        opts = {},
+      },
     { -- blink completion source for require statements and module annotations
         "saghen/blink.cmp",
         version = '1.*',
         opts = {
+            enabled = function()
+                return vim.bo.buftype ~= 'prompt' or require('cmp_dap').is_dap_buffer()
+            end,
             sources = {
                 -- add lazydev to your completion providers
-                default = { "lazydev", "lsp", "path", "snippets", "buffer" },
+                default = default_sources,
+                per_filetype = { ['dap-repl'] = debug_sources, dapui_watches = debug_sources, dapui_hover = debug_sources },
                 providers = {
                 lazydev = {
                     name = "LazyDev",
@@ -27,6 +38,13 @@ return {
                     -- make lazydev completions top priority (see `:h blink.cmp`)
                     score_offset = 100,
                 },
+                dap = {
+                    name = 'dap',
+                    module = 'blink.compat.source',
+                    enabled = function()
+                      return require('cmp_dap').is_dap_buffer()
+                    end,
+                  },
                 },
             },
             signature = { window = { border = default_border } },

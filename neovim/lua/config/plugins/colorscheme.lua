@@ -19,9 +19,12 @@ return {
                 return {
                     NeoTreeDirectoryIcon = { fg = colors.lavender },
                     NeoTreeDirectoryName = { fg = colors.lavender },
-                    NeoTreeTitleBar = { fg = colors.lavender },
-                    NeoTreeRootName = { fg = colors.lavender },
+                    NeoTreeRootName = { fg = colors.lavender, style = { "bold" } },
                     NeoTreeGitUntracked = { fg = colors.teal },
+                    NeoTreeTitleBar = { fg = colors.mantle, bg = colors.lavender },
+
+                    DapStopped = { bg = colors.surface0 },
+                    DapStoppedLine = { bg = colors.surface0 },
                 }
             end
         }

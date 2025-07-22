@@ -18,6 +18,8 @@ return {
         },
         extensions = {
             'neo-tree',
+            'nvim-dap-ui',
+            'fugitive',
         },
     },
 }

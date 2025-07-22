@@ -4,6 +4,14 @@ return {
     -- branch = 'main', --  return to main later, when it will be more stable
     tag = "v0.10.0", -- don't forget to update when 'ft_to_lang' exception will be fixed
     build = ':TSUpdate',
+    dependencies = {
+        {
+            "LiadOz/nvim-dap-repl-highlights",
+            opts = {
+                
+            }
+        },
+    },
 
     config = function()
       local cfg = require("nvim-treesitter.configs")
@@ -18,6 +26,7 @@ return {
             },
         },
         ensure_installed = {
+          'dap_repl', -- for highlighting in dap (debug) REPL 
           'bash',
           'cmake',
           'comment',
