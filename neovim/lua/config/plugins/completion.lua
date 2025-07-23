@@ -19,10 +19,13 @@ return {
         -- version = '*',
         lazy = true,
         opts = {},
-      },
+    },
     { -- blink completion source for require statements and module annotations
         "saghen/blink.cmp",
         version = '1.*',
+        dependencies = {
+            "rcarriga/cmp-dap"
+        },
         opts = {
             enabled = function()
                 return vim.bo.buftype ~= 'prompt' or require('cmp_dap').is_dap_buffer()

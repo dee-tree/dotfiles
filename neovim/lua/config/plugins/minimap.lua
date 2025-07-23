@@ -9,7 +9,7 @@ return {
     end,
     opts = {
         enabled = true,
-        excluded_filetypes = {'nerdtree', 'neotree'},
+        excluded_filetypes = {'nerdtree', 'neotree', 'neo-tree'},
         signs_on_startup = { 'all' },
         signs_scrollbar_overlap = 'over',
         hide_on_cursor_intersect = true,
