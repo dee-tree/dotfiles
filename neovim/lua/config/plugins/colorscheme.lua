@@ -25,6 +25,10 @@ return {
 
                     DapStopped = { bg = colors.surface0 },
                     DapStoppedLine = { bg = colors.surface0 },
+
+                    IlluminatedWordText = { style = { "underline" } },
+                    IlluminatedWordRead = { style = { "underline" } },
+                    IlluminatedWordWrite = { style = { "underline" } },
                 }
             end
         }
