@@ -8,6 +8,12 @@ return {
             build = (build_cmd ~= "cmake") and "make"
             or "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build",
         },
+        {
+            "nvim-telescope/telescope-live-grep-args.nvim" ,
+            -- This will not install any breaking changes.
+            -- For major updates, this must be adjusted manually.
+            version = "^1.0.0",
+        },
         'debugloop/telescope-undo.nvim',
     },
     keys = {
@@ -15,6 +21,13 @@ return {
             "<leader><leader>",
             "<cmd>Telescope buffers sort_mru=true sort_lastused=true<cr>",
             desc = "Switch Buffer",
+        },
+        {
+            "<leader>fg",
+            function()
+                require("telescope").extensions.live_grep_args.live_grep_args()
+            end,
+            desc = "Show grep result"
         },
         {
             "<leader>fb",
@@ -41,7 +54,11 @@ return {
             "<leader>fu", "<cmd>Telescope undo<cr>", desc = "Show undo tree"
         },
     },
-    opts = {
+    opts = function()
+        local t_act = require("telescope.actions")
+        local lga_act = require("telescope-live-grep-args.actions")
+
+        return {
         pickers = {
             find_files = {
                 follow = true,
@@ -50,23 +67,23 @@ return {
         defaults = {
         mappings = {
             n = {
-                ["k"] = require("telescope.actions").move_selection_next,
-                ["l"] = require("telescope.actions").move_selection_previous,
-                ["<C-LeftMouse>"] = require("telescope.actions").select_tab,
-                ["<C-CR>"] = require("telescope.actions").select_tab,
-                ["i"] = require("telescope.actions").preview_scrolling_down,
-                ["o"] = require("telescope.actions").preview_scrolling_up,
-                ["<RightMouse>"] = require("telescope.actions").close,
-                ["<LeftMouse>"] = require("telescope.actions").select_default,
-                ["<ScrollWheelDown>"] = require("telescope.actions").move_selection_next,
-                ["<ScrollWheelUp>"] = require("telescope.actions").move_selection_previous,
+                ["k"] = t_act.move_selection_next,
+                ["l"] = t_act.move_selection_previous,
+                ["<C-LeftMouse>"] = t_act.select_tab,
+                ["<C-CR>"] = t_act.select_tab,
+                ["i"] = t_act.preview_scrolling_down,
+                ["o"] = t_act.preview_scrolling_up,
+                ["<RightMouse>"] = t_act.close,
+                ["<LeftMouse>"] = t_act.select_default,
+                ["<ScrollWheelDown>"] = t_act.move_selection_next,
+                ["<ScrollWheelUp>"] = t_act.move_selection_previous,
                 ["dd"] = require('telescope.actions').delete_buffer,
             },
             i = {
-                ["<C-LeftMouse>"] = require("telescope.actions").select_tab,
-                ["<C-CR>"] = require("telescope.actions").select_tab,
-                ["<C-k>"] = require("telescope.actions").preview_scrolling_down,
-                ["<C-l>"] = require("telescope.actions").preview_scrolling_up,
+                ["<C-LeftMouse>"] = t_act.select_tab,
+                ["<C-CR>"] = t_act.select_tab,
+                ["<C-k>"] = t_act.preview_scrolling_down,
+                ["<C-l>"] = t_act.preview_scrolling_up,
                 ["<C-c>"] = function()
                     local entry = require("telescope.actions.state").get_selected_entry()
                     local value = entry.value
@@ -80,10 +97,10 @@ return {
                     end
                     vim.fn.setreg("", value)
                 end,
-                ["<RightMouse>"] = require("telescope.actions").close,
-                ["<LeftMouse>"] = require("telescope.actions").select_default,
-                ["<ScrollWheelDown>"] = require("telescope.actions").move_selection_next,
-                ["<ScrollWheelUp>"] = require("telescope.actions").move_selection_previous,
+                ["<RightMouse>"] = t_act.close,
+                ["<LeftMouse>"] = t_act.select_default,
+                ["<ScrollWheelDown>"] = t_act.move_selection_next,
+                ["<ScrollWheelUp>"] = t_act.move_selection_previous,
                 ["<C-d>"] = require('telescope.actions').delete_buffer,
 
                 -- until Telescope 0.2.0
@@ -97,6 +114,14 @@ return {
                 fuzzy = true,
                 case_mode = "smart_case",
             },
+            live_grep_args = {
+                auto_quoting = false,
+                mappings = {
+                    i = {
+                        ['<C-g>'] = lga_act.quote_prompt({ postfix = ' --iglob ' }),
+                    },
+                }
+            },
             undo = {
                 side_by_side = false,
                 layout_strategy = 'vertical',
@@ -106,6 +131,7 @@ return {
                 }
             },
         }
-    },
+    }
+    end,
 }
 
