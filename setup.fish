@@ -11,6 +11,17 @@ if set -q setup_wezterm && not set -q skip_wezterm
     ln -s "$root/utilua" "$homedir/.wezterm/dotlocal/utilua"
 end
 
+if set -q setup_ghostty && not set -q skip_ghostty
+    echo "Setup ghostty"
+    
+    ln -s "$root/ghostty/config" "$homedir/.config/ghostty/config"
+    ln -s "$root/ghostty/themes" "$homedir/.config/ghostty/themes"
+    ln -s "$root/ghostty/mappings.conf" "$homedir/.config/ghostty/mappings.conf"
+    # for file in $root/ghostty/*
+        # ln -s $file "$homedir/.config/ghostty/$(basename $file)"
+    # end
+end
+
 if set -q setup_zsh && not set -q skip_zsh
     echo "Setup zsh"
     # complete manually
@@ -55,3 +66,4 @@ if set -q setup_starship && not set -q skip_starship
     echo "Setup starship"
     ln -s "$root/starship/starship.toml" "$homedir/.config/starship.toml"
 end
+

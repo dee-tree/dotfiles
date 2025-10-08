@@ -1,0 +1,10 @@
+
+config-file = mappings.conf
+
+theme = catppuccin-mocha.conf
+background-opacity = 0.9
+
+mouse-scroll-multiplier = 1
+
+
+
