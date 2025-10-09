@@ -2,9 +2,15 @@
 config-file = mappings.conf
 
 theme = catppuccin-mocha.conf
+window-theme = ghostty
 background-opacity = 0.9
+background-blur = true
+# window-decoration = none
+
+gtk-titlebar = false
+gtk-wide-tabs = false
 
 mouse-scroll-multiplier = 1
 
-
-
+keybind = performable:ctrl+c=copy_to_clipboard
+keybind = ctrl+v=paste_from_clipboard
