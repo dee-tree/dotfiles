@@ -67,3 +67,7 @@ if set -q setup_starship && not set -q skip_starship
     ln -s "$root/starship/starship.toml" "$homedir/.config/starship.toml"
 end
 
+if set -q setup_zellij && not set -q skip_zellij
+    echo "Setup zellij"
+    ln -s "$root/zellij/config.kdl" "$homedir/.config/zellij/config.kdl"
+end
