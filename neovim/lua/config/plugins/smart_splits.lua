@@ -80,7 +80,7 @@ return {
         -- and the $KITTY_LISTEN_ON environment variable for Kitty.
         -- You can also set this value by setting `vim.g.smart_splits_multiplexer_integration`
         -- before the plugin is loaded (e.g. for lazy environments).
-        multiplexer_integration = nil,
+        -- multiplexer_integration = nil,
         -- disable multiplexer navigation if current multiplexer pane is zoomed
         disable_multiplexer_nav_when_zoomed = true,
         -- Supply a Kitty remote control password if needed,
