@@ -15,6 +15,8 @@ opt.mouse = 'a'
 opt.completeopt = {'menu', 'menuone', 'noselect'}
 opt.undofile = true
 
+vim.opt.termsync = false -- fix bad lines updates in ssh
+
 opt.splitbelow = true -- open new vertical split bottom
 opt.splitright = true -- open new horizontal splits right
 
