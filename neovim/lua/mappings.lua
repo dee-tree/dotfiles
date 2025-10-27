@@ -59,9 +59,11 @@ map({'n', 'v', 'o'}, 'k', 'j')
 map({'n', 'v', 'o'}, 'l', 'k')
 map({'n', 'v', 'o'}, ';', 'l')
 
+nmap('<C-Right>', 'e')
+
 -- capitalize word
-nmap('<C-Up>', 'gUiww')
-nmap('<C-Down>', 'guiww')
+-- nmap('<C-Up>', 'gUiww')
+-- nmap('<C-Down>', 'guiww')
 
 -- Shift + Up/Down to move line up/down
 nmap('<S-Up>', 'yyddkP')
@@ -75,12 +77,14 @@ nmap('<PageUp>', '<S-h>')
 nmap('<C-j>', '2zh')
 nmap('<C-;>', '2zl')
 
--- half screen scroll
+-- vertical screen scroll
 nmap('<C-k>', '4<C-e>')
 nmap('<C-l>', '4<C-y>')
+nmap('<C-Down>', '4<C-e>')
+nmap('<C-Up>', '4<C-y>')
 
--- duplicate line
-nmap('<C-d>', 'yyp')
+-- nmap('<C-d>', 'yyp')
+nmap('<C-y>', 'yyp')
 
 -- stay in visual mode for indent/unindent
 vmap('<', '<gv')
@@ -135,6 +139,14 @@ tmap('<Esc>', '<C-\\><C-n>') -- exit from terminal
 map({'t', 'i'}, '<C-BS>', '<C-\\><C-o>dB')
 -- tmap('<C-H>', '<C-\\><C-o>dB', true) -- Ctrl-H == Ctrl-Backspace for some terminals
 -- imap('<C-H>', '<C-\\><C-o>dB', true) -- Ctrl-H == Ctrl-Backspace for some terminals
+
+-- jumps move
+nmap('[j', '<C-o>')
+nmap(']j', '<C-i>')
+
+-- changes move
+nmap('[c', 'g;')
+nmap(']c', 'g,')
 
 -- LSP & completion
 nmap('<leader>ds', vim.diagnostic.open_float, { desc = "Show diagnostics" })
