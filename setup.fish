@@ -58,7 +58,7 @@ if set -q setup_neovim && not set -q skip_neovim
     echo "Setup neovim"
     # TODO: use $XDG_CONFIG_HOME
     mkdir -p "$homedir/.config/nvim"
-    ln -s "$root/neovim/initlua" "$homedir/.config/nvim/init.lua"
+    ln -s "$root/neovim/init.lua" "$homedir/.config/nvim/init.lua"
     ln -s "$root/neovim/lua" "$homedir/.config/nvim/lua"
 end
 

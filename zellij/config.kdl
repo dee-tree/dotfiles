@@ -1,6 +1,7 @@
 theme "my-catppuccin-mocha"
 
-// simplified_ui true
+support_kitty_keyboard_protocol true
+// simplified_ui true // if nerd font is not installed
 default_layout "compact"
 
 show_startup_tips false
@@ -10,15 +11,12 @@ ui {
     }
 }
 
-
-
 keybinds clear-defaults=true {
     normal {
 
     }
     locked {
         bind "Ctrl g" { SwitchToMode "normal"; }
-
 
     }
     pane {
@@ -95,7 +93,7 @@ keybinds clear-defaults=true {
         bind "up" { MovePane "up"; }
         bind "right" { MovePane "right"; }
         bind "h" { MovePane "left"; }
-        bind "Ctrl h" { SwitchToMode "normal"; }
+        // bind "Ctrl h" { SwitchToMode "normal"; }
         bind "j" { MovePane "down"; }
         bind "k" { MovePane "up"; }
         bind "l" { MovePane "right"; }
@@ -153,8 +151,8 @@ keybinds clear-defaults=true {
         }
     }
     shared_except "locked" {
-        bind "Ctrl Shift t" { NewTab; };
-        bind "Ctrl Shift q" { CloseTab; };
+        bind "Alt t" { NewTab; };
+        bind "Alt q" { CloseTab; };
         bind "Alt Home" { GoToPreviousTab; };
         bind "Alt End" { GoToNextTab; };
 
@@ -252,19 +250,19 @@ keybinds clear-defaults=true {
         bind "Ctrl q" { Quit; }
     }
     shared_except "locked" "move" {
-        bind "Ctrl h" { SwitchToMode "move"; }
+        // bind "Ctrl h" { SwitchToMode "move"; }
     }
     shared_except "locked" "session" {
-        bind "Ctrl o" { SwitchToMode "session"; }
+        // bind "Ctrl o" { SwitchToMode "session"; }
     }
     shared_except "locked" "scroll" "search" "tmux" {
-        bind "Ctrl b" { SwitchToMode "tmux"; }
+        // bind "Ctrl b" { SwitchToMode "tmux"; }
     }
     shared_except "locked" "scroll" "search" {
         bind "Ctrl s" { SwitchToMode "scroll"; }
     }
     shared_except "locked" "tab" {
-        bind "Ctrl t" { SwitchToMode "tab"; }
+        // bind "Ctrl t" { SwitchToMode "tab"; }
     }
     shared_except "locked" "pane" {
         bind "Ctrl p" { SwitchToMode "pane"; }

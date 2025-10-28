@@ -66,21 +66,21 @@ function module.apply_to_config(config)
     { key = '+', mods = 'CTRL', action = act.IncreaseFontSize },
     { key = '-', mods = 'CTRL', action = act.DecreaseFontSize },
     -- tabs navigation
-    { key = 'Home', mods = 'ALT', action = act.ActivateTabRelative(-1) },
-    { key = 'End', mods = 'ALT', action = act.ActivateTabRelative(1) },
+    { key = 'Home', mods = 'CTRL|SHIFT', action = act.ActivateTabRelative(-1) },
+    { key = 'End', mods = 'CTRL|SHIFT', action = act.ActivateTabRelative(1) },
 
     { key = 't', mods = 'CTRL|SHIFT', action = act.SpawnTab 'CurrentPaneDomain' },
     { key = 'PageDown', mods = 'ALT', action = act.ShowTabNavigator },
     { key = 'f', mods = 'CTRL|SHIFT', action = act.ShowTabNavigator },
 
     -- panes navigation
-    { key = 'u', mods = 'ALT', action = act.SplitPane { direction = 'Left' } },
-    { key = 'i', mods = 'ALT', action = act.SplitPane { direction = 'Down' } },
-    { key = 'o', mods = 'ALT', action = act.SplitPane { direction = 'Up' } },
-    { key = 'p', mods = 'ALT', action = act.SplitPane { direction = 'Right' } },
+    -- { key = 'u', mods = 'ALT', action = act.SplitPane { direction = 'Left' } },
+    -- { key = 'i', mods = 'ALT', action = act.SplitPane { direction = 'Down' } },
+    -- { key = 'o', mods = 'ALT', action = act.SplitPane { direction = 'Up' } },
+    -- { key = 'p', mods = 'ALT', action = act.SplitPane { direction = 'Right' } },
 
     { key = 'q', mods = 'LEADER', action = act.CloseCurrentPane { confirm = true } },
-    { key = 'q', mods = 'ALT', action = act.CloseCurrentPane { confirm = true } },
+    -- { key = 'q', mods = 'ALT', action = act.CloseCurrentPane { confirm = true } },
     { key = 'Q', mods = 'CTRL|SHIFT', action = act.CloseCurrentTab { confirm = true } },
 
     -- managed by smart-splits plug-in
