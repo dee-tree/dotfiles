@@ -2,7 +2,7 @@
 function cjworkspace --description "setup cangjie workspace"
     set -gx CJ_WORKSPACE "$(eval echo ~$USER)/projects/cangjie"
     if set -q $argv[1]
-        set -gx CJ_WORKSPACE $argv[1]
+        set CJ_WORKSPACE $argv[1]
     end
     set -gx CJ_OUT "$CJ_WORKSPACE/out"
 end
@@ -12,14 +12,16 @@ cjworkspace
 function cjenv --description "setup built cangjie"
     set -gx CANGJIE_HOME $CJ_OUT
 
-    if set -q $argv[1]
-        set -gx CANGJIE_HOME $argv[1]
+    if count $argv > 0
+        set CANGJIE_HOME $argv[1]
     end
 
     set -l hw_arch $(arch)
     if [ $hw_arch = "" ]
-        set -l hw_arch "x86_64"
+        set hw_arch "x86_64"
     end
+
+    echo "Activating cangjie at $CANGJIE_HOME"
     fish_add_path --prepend -g {$CANGJIE_HOME}/bin
     fish_add_path --prepend -g {$CANGJIE_HOME}/tools/bin
     fish_add_path --append -g {$HOME}/.cjpm/bin
@@ -105,7 +107,6 @@ function cjbuild --description "build cangjie toolchain"
 end
 
 function cjtest --description "test cangjie"
-    # TODO: currently only LLT is supported
     set -l cj_test_dir $CJ_WORKSPACE/cangjie_test
     set -l cj_tf_dir $CJ_WORKSPACE/cangjie_test_framework
     set -l test_cfg $cj_test_dir/testsuites/LLT/configs/cjnative/cjnative_test.cfg
@@ -114,6 +115,13 @@ function cjtest --description "test cangjie"
     set -l test_tmp_dir $cj_tf_dir/test_temp
     set -l logcjtestdir ~/logs/cjtest
     set -l test_cases $argv[(count argv)]
+    set -l test_kind "LLT"
+
+    if string match '*HLT/*' $test_cases 
+        set test_cfg $cj_test_dir/testsuites/HLT/configs/cjnative/cangjie2cjnative_linux_x86_test.cfg
+        set test_list $cj_test_dir/testsuites/HLT/testlist
+        set test_kind "HLT"
+    end
     
     rm -rf $test_tmp_dir
     rm -rf $logcjtestdir
@@ -121,7 +129,7 @@ function cjtest --description "test cangjie"
     set -l test_list_opt "--test_list=$test_list"
 
     pushd $CJ_WORKSPACE
-    echo "Running LLT tests..."
+    echo "Running $test_kind tests..."
 
     echo "command: python3 $cj_tf_dir/main.py --temp_dir=$test_tmp_dir --log_dir=$logcjtestdir --test_cfg=$test_cfg $test_list_opt --fail-verbose -pFAIL -j8 --debug $test_cases"
     python3 cangjie_test_framework/main.py --temp_dir=$test_tmp_dir --log_dir=$logcjtestdir --test_cfg=$test_cfg $test_list_opt --fail-verbose -pFAIL -j8 --debug $test_cases 
