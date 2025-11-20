@@ -88,16 +88,29 @@ function cjcjpmbuild --description "build cjpm"
     # ln -s $CJ_OUT/cjpm $CJ_OUT/bin/cjpm
 end
 
-function cjinteropbuild --description "build interoplib"
-    # builds objc part here
-    set -l objc_dir "$CJ_WORKSPACE/cangjie_multiplatform_interop/objc"
+function cjinteropbuild --description "build cj interop lib \{java\} / \{obc\}"
+    set -l java "java"
+    set -l objc "objc"
+    set -l interop_path "$CJ_WORKSPACE/cangjie_multiplatform_interop"
+    if test $argv[1] = $java
+        pushd "$interop_path/java/build"
+        python3 build.py build -t debug --target ????? # TODO: complete
+        python3 build.py install --prefix $CANGJIE_HOME
+            or return 1
+        return 0
+    end
 
-    pushd $objc_dir/build
-    python3 build.py build -t debug --target linux_x86_64_cjnative
-    or return 1
-    python3 build.py install --target linux_x86_64_cjnative --prefix $CJ_OUT
-    or return 1
-    popd
+    if test $argv[1] = $objc
+        pushd "$interop_path/objc/build"
+        python3 build.py build --target=linux_x86_64
+            or return 1
+        python3 build.py install --target=linux_x86_64 --prefix=$CANGJIE_HOME
+            or return 1
+        return 0
+    end
+
+    echo "Specify target as an argument: $java or $objc"
+    return 1
 end
 
 function cjbuild --description "build cangjie toolchain"
