@@ -3,6 +3,7 @@
 format = """
 [](os_bg)\
 $os\
+$nix_shell\
 [](bg:lavender fg:os_bg)\
 $directory\
 [](fg:lavender bg:yellow)\
@@ -90,6 +91,13 @@ style = "bold status_red"
 success_style="status_green"
 format = '[$symbol $common_meaning$signal_name$maybe_int]($style) '
 map_symbol = true
+
+[nix_shell]
+disabled = false
+impure_msg = '[!](bg:os_bg bold fg:peach)'
+pure_msg = '[λ](bg:os_bg bold fg:green)'
+unknown_msg = '[?](bg:os_bg bold fg:yellow)'
+format = '[$state$symbol](bg:os_bg bold fg:blue)'
 
 [git_branch]
 symbol = ""
