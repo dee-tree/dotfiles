@@ -2,6 +2,9 @@
 # [include]
 #    path = ~/src/devenv/dotfiles/delta/delta.gitconfig
 
+[init]
+  defaultBranch = main
+
 [core]
     pager = delta
     editor = nvim
