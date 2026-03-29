@@ -5,9 +5,11 @@ if type -q starship
     enable_transience # enables transient prompt
 end
 
-
-
 if set -q ZELLIJ
-else
-    # zellij
+else if type -q zellij
+    zellij
+end
+
+if set -q direnv
+    direnv hook fish | source
 end
