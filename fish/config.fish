@@ -10,6 +10,6 @@ else if type -q zellij
     zellij
 end
 
-if set -q direnv
+if type -q direnv
     direnv hook fish | source
 end
