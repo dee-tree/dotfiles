@@ -49,7 +49,7 @@ if set -q setup_fish && not set -q skip_fish
 
     ln -s "$root/fish/config.fish" "$homedir/.config/fish/config.fish"
 
-    for ffile in $root/fish/.fish/*
+    for ffile in $root/fish/conf.d/*
         ln -s $ffile "$homedir/.config/fish/conf.d/$(basename $ffile)"
     end
 end
