@@ -17,3 +17,10 @@ Anything that could help in everyday developer routine:
 - shell
 - text editor
 - utils, tools, etc
+
+## Installation
+
+### Fish
+
+To set fish as default shell, append:
+`exec fish --login` to the `.bashrc`.

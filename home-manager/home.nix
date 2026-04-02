@@ -9,6 +9,8 @@
         fish
         starship
         neovim
+        
+        # TODO: ghostty - setup nixGL / nix-system-graphics
         ghostty
         zellij
 
