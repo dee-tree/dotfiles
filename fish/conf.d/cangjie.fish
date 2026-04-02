@@ -1,18 +1,19 @@
 
 function cjworkspace --description "setup cangjie workspace"
     set -gx CJ_WORKSPACE "$(eval echo ~$USER)/projects/cangjie"
-    if set -q $argv[1]
-        set CJ_WORKSPACE $argv[1]
+    echo "Setting cangjie workspace..."
+    # check if argument is passed
+    if count $argv > /dev/null
+        set -gx CJ_WORKSPACE $argv[1]
+        echo "Cangjie workspace is set for custom directory: $CJ_WORKSPACE"
     end
     set -gx CJ_OUT "$CJ_WORKSPACE/out"
 end
 
-cjworkspace
-
 function cjenv --description "setup built cangjie"
     set -gx CANGJIE_HOME $CJ_OUT
 
-    if count $argv > 0
+    if test (count $argv) -gt 0
         set CANGJIE_HOME $argv[1]
     end
 
@@ -32,7 +33,7 @@ end
 function cjcbuild --description "build cjc"
     set -l cjc_dir "$CJ_WORKSPACE/cangjie_compiler"
     pushd $cjc_dir
-    python3 build.py build -t debug --enable-assert --no-tests --jobs=16
+    python3 build.py build -t debug --enable-assert --no-tests --jobs=16 --version 0.0.1
         or return 1
 
     python3 build.py install --prefix $CJ_OUT
@@ -43,7 +44,7 @@ end
 function cjruntimebuild --description "build cj runtime"
     set -l dir "$CJ_WORKSPACE/cangjie_runtime/runtime"
     pushd $dir
-    python3 build.py build -t debug --version 1.0.0
+    python3 build.py build -t debug --version 0.0.1
         or return 1
     python3 build.py install
         or return 1
@@ -94,8 +95,9 @@ function cjinteropbuild --description "build cj interop lib \{java\} / \{obc\}"
     set -l interop_path "$CJ_WORKSPACE/cangjie_multiplatform_interop"
     if test $argv[1] = $java
         pushd "$interop_path/java/build"
-        python3 build.py build -t debug --target ????? # TODO: complete
-        python3 build.py install --prefix $CANGJIE_HOME
+        python3 build.py build -t debug --target-lib linux_x86_64_cjnative 
+            or return 1
+        python3 build.py install --target linux_x86_64 --prefix $CANGJIE_HOME
             or return 1
         return 0
     end
@@ -115,6 +117,7 @@ end
 
 function cjbuild --description "build cangjie toolchain"
     cjcbuild
+    cjenv
     cjruntimebuild
     cjstdbuild
 end

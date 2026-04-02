@@ -70,4 +70,9 @@ end
 if set -q setup_zellij && not set -q skip_zellij
     echo "Setup zellij"
     ln -s "$root/zellij/config.kdl" "$homedir/.config/zellij/config.kdl"
+    zellij setup --generate-completion fish > $homedir/.config/fish/completions/zellij.fish
+    funcsave zr
+    funcsave zrf
+    funcsave ze
+    funcsave zef
 end

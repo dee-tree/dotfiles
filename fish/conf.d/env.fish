@@ -1,3 +1,5 @@
+set -gx IN_FISH_SHELL
+
 set -gx EDITOR nvim
 
 function zellij_update_tabname
