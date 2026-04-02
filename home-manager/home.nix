@@ -1,19 +1,18 @@
 { config, pkgs, ... }:
 {
-    home.username = "sokolov";
-    home.homeDirectory = "/home/sokolov";
+    home.username = "dee";
+    home.homeDirectory = "/home/dee";
     home.stateVersion = "25.11";
-    # programs.home-manager.enable = true;
+    programs.home-manager.enable = true;
 
     home.packages = with pkgs; [
-        # fish
+        fish
         starship
         neovim
         ghostty
         zellij
 
         ripgrep
-
     ];
 
     home.file = {
