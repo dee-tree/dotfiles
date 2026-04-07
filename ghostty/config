@@ -1,11 +1,15 @@
-
+command = "/home/dee/.nix-profile/bin/fish"
 config-file = mappings.conf
 
 theme = catppuccin-mocha.conf
 window-theme = ghostty
-background-opacity = 0.9
+
+background-opacity = 0.8
 background-blur = true
 # window-decoration = none
+window-new-tab-position = end
+
+copy-on-select = false
 
 gtk-titlebar = false
 gtk-wide-tabs = false

@@ -1,26 +1,12 @@
 // Place your key bindings in this file to override the defaults
 [
     {
-        "key": "ctrl ctrl",
-        "command": "workbench.action.showCommands"
-    },
-    {
         "key": "ctrl+\\",
         "command": "workbench.action.showCommands"
     },
     {
         "key": "alt+\\",
         "command": "workbench.action.showCommands"
-    },
-    {
-        "key": "ctrl+w",
-        "command": "editor.action.smartSelect.grow",
-        "when": "editorTextFocus"
-    },
-    {
-        "key": "ctrl+shift+w",
-        "command": "editor.action.smartSelect.shrink",
-        "when": "editorTextFocus"
     },
     {
         "key": "ctrl+n",
@@ -195,4 +181,26 @@
         "key": "alt+up",
         "command": "workbench.action.navigateUp"
     },
+{
+        "key": "shift+j",
+        "command": "workbench.action.previousEditor",
+        "when": "vim.active && vim.mode != 'Insert' && editorTextFocus && !inputFocus"
+    },
+    {
+        "key": "shift+;",
+        "command": "workbench.action.nextEditor",
+        "when": "vim.active && vim.mode != 'Insert' && editorTextFocus && !inputFocus"
+    },
+    {
+        "key": "v",
+        "command": "editor.action.smartSelect.grow",
+        "when": "vim.active && vim.mode == 'Visual'"
+    },
+    {
+        "key": "shift+v",
+        "command": "editor.action.smartSelect.shrink",
+        "when": "vim.active && vim.mode == 'Visual' && editorTextFocus"
+    },
+
+
 ]

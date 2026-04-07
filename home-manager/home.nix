@@ -4,6 +4,7 @@
     home.homeDirectory = "/home/dee";
     home.stateVersion = "25.11";
     programs.home-manager.enable = true;
+    programs.direnv.enable = true;
 
     home.packages = with pkgs; [
         fish
@@ -15,6 +16,9 @@
         zellij
 
         ripgrep
+        python3
+        nodejs
+
     ];
 
     home.file = {
@@ -56,6 +60,20 @@
         # zellij
         ".config/zellij/config.kdl" = {
             source = config.lib.file.mkOutOfStoreSymlink ./../zellij/config.kdl;
+        };
+
+        # vscode
+        ".config/Code/User/settings.json" = {
+            source = ./../vscode/settings.json;
+        };
+        ".config/Code/User/keybindings.json" = {
+            source = ./../vscode/keybindings.json;
+        };
+        ".config/Code - OSS/User/settings.json" = {
+            source = ./../vscode/settings.json;
+        };
+        ".config/Code - OSS/User/keybindings.json" = {
+            source = ./../vscode/keybindings.json;
         };
     };
 }
