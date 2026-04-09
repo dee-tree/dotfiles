@@ -193,10 +193,16 @@
     "vim.smartRelativeLine": true,
     "vim.incsearch": true,
     "vim.hlsearch": true,
+    "vim.searchHighlightColor": "rgba(180, 142, 173, 0.5)", // Search highlight colour
 
     "vim.highlightedyank.enable": true,
-    "vim.statusBarColorControl": true,
-    "vim.statusBarColors.normal": "#519aba",
+    "vim.statusBarColorControl": true,                   // Enable status bar colour changes
+    "vim.statusBarColors.normal": "#519aba",             // Blue for normal mode
+    "vim.statusBarColors.insert": "#98c379",             // Green for insert mode
+    "vim.statusBarColors.visual": "#c678dd",             // Purple for visual mode
+    "vim.statusBarColors.visualline": "#c678dd",         // Purple for visual line mode
+    "vim.statusBarColors.visualblock": "#c678dd",        // Purple for visual block mode
+    "vim.statusBarColors.replace": "#e06c75",            // Red for replace mode
 
     "vim.handleKeys": {
         "<C-p>": false, // quick open,

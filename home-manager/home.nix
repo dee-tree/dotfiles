@@ -10,6 +10,8 @@
         fish
         starship
         neovim
+        bat
+        delta
         
         # TODO: ghostty - setup nixGL / nix-system-graphics
         ghostty
