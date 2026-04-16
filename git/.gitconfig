@@ -1,6 +1,6 @@
 # just include delta.config in your .gitconfig file:
 # [include]
-#    path = ~/src/devenv/dotfiles/delta/delta.gitconfig
+#    path = ~/src/devenv/dotfiles/delta/.gitconfig
 
 [init]
   defaultBranch = main

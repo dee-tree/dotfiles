@@ -27,6 +27,7 @@
     "editor.foldingImportsByDefault": true,
     "editor.suggest.insertMode": "insert",
     "editor.rulers": [/* 80, */ 120],
+    "editor.inlayHints.enabled": "off",
 
     "search.showLineNumbers": true,
     "search.smartCase": true,
