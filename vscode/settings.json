@@ -8,7 +8,7 @@
 
     "files.autoSave": "afterDelay",
     "files.autoSaveDelay": 500,
-    "files.trimTrailingWhitespace": true,
+    "files.trimTrailingWhitespace": false,
     "files.trimFinalNewlines": true,
     "[markdown]": {
         "files.trimTrailingWhitespace": false
@@ -59,7 +59,6 @@
             "panel.border": "#434856",
             "panel.background": "#262A32",
             "sideBarSectionHeader.background": "#262A32",
-            "statusBar.background": "#343844",
             "statusBar.noFolderBackground": "#343844",
             "statusBar.border": "#343844",
             "titleBar.activeBackground": "#262A32",
@@ -111,9 +110,11 @@
             "editorBracketHighlight.foreground6": "#9d96ff",
             "editorRuler.foreground": "#34414e"
         },
-        "statusBar.background": "#519aba",
-        "statusBar.noFolderBackground": "#519aba",
-        "statusBar.debuggingBackground": "#519aba"
+        "statusBar.background": "#343844",
+        "statusBar.noFolderBackground": "#343844",
+        "statusBar.debuggingBackground": "#343844",
+        "statusBar.foreground": "#ffffff",
+        "statusBar.debuggingForeground": "#ffffff"
     },
 
     "editor.tokenColorCustomizations": {
@@ -198,11 +199,13 @@
 
     "vim.highlightedyank.enable": true,
     "vim.statusBarColorControl": true,                   // Enable status bar colour changes
-    "vim.statusBarColors.normal": "#519aba",             // Blue for normal mode
-    "vim.statusBarColors.insert": "#98c379",             // Green for insert mode
-    "vim.statusBarColors.visual": "#c678dd",             // Purple for visual mode
-    "vim.statusBarColors.visualline": "#c678dd",         // Purple for visual line mode
-    "vim.statusBarColors.visualblock": "#c678dd",        // Purple for visual block mode
+    "vim.statusBarColors.normal": "#343844",             // Blue for normal mode
+    "vim.statusBarColors.searchinprogressmode": "#4a5164", // Search mode
+    "vim.statusBarColors.commandlineinprogress": "#4a5164", // Command line mode
+    "vim.statusBarColors.insert": "#a6da95",             // Green for insert mode
+    "vim.statusBarColors.visual": "#9d96ff",             // Purple for visual mode
+    "vim.statusBarColors.visualline": "#9d96ff",         // Purple for visual line mode
+    "vim.statusBarColors.visualblock": "#9d96ff",        // Purple for visual block mode
     "vim.statusBarColors.replace": "#e06c75",            // Red for replace mode
 
     "vim.handleKeys": {
@@ -219,6 +222,10 @@
         "<C-v>": false, // paste
         "<C-z>": false, // undo
         "<C-r>": false, // find and replace (but potentially could be changed to redo)
+        "<C-o>": true,
+        "<C-i>": true,
+        "C-left": false,
+        "C-right": false,
     },
 
     "vim.normalModeKeyBindingsNonRecursive": [
@@ -313,6 +320,5 @@
         },
     ],
 
-    "git.blame.editorDecoration.enabled": false
+    "git.blame.editorDecoration.enabled": true
 }
-

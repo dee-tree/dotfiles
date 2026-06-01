@@ -194,13 +194,15 @@
     {
         "key": "v",
         "command": "editor.action.smartSelect.grow",
-        "when": "vim.active && vim.mode == 'Visual'"
+        "when": "vim.active && vim.mode == 'Visual' && editorTextFocus"
     },
     {
         "key": "shift+v",
         "command": "editor.action.smartSelect.shrink",
         "when": "vim.active && vim.mode == 'Visual' && editorTextFocus"
     },
+    { "key": "ctrl-right", "command": "-extension.vim_ctrl+right" },
+    { "key": "ctrl-left", "command": "-extension.vim_ctrl+left" },
 
 
 ]
