@@ -7,14 +7,13 @@
     programs.direnv.enable = true;
 
     home.packages = with pkgs; [
-        fish
         starship
         neovim
         bat
         delta
         
         # TODO: ghostty - setup nixGL / nix-system-graphics
-        ghostty
+        # ghostty
         zellij
 
         ripgrep
@@ -64,18 +63,28 @@
             source = config.lib.file.mkOutOfStoreSymlink ./../zellij/config.kdl;
         };
 
+        # niri
+        ".config/niri/config.kdl" = {
+            source = config.lib.file.mkOutOfStoreSymlink ./../niri/config.kdl;
+        };
+
+        # danksearch
+        ".config/danksearch/config.toml" = {
+            source = config.lib.file.mkOutOfStoreSymlink ./../niri/danksearch/config.toml;    
+        };
+
         # vscode
-        ".config/Code/User/settings.json" = {
-            source = ./../vscode/settings.json;
-        };
-        ".config/Code/User/keybindings.json" = {
-            source = ./../vscode/keybindings.json;
-        };
-        ".config/Code - OSS/User/settings.json" = {
-            source = ./../vscode/settings.json;
-        };
-        ".config/Code - OSS/User/keybindings.json" = {
-            source = ./../vscode/keybindings.json;
-        };
+       # ".config/Code/User/settings.json" = {
+       #     source = ./../vscode/settings.json;
+       # };
+       # ".config/Code/User/keybindings.json" = {
+       #     source = ./../vscode/keybindings.json;
+       # };
+       # ".config/Code - OSS/User/settings.json" = {
+       #     source = ./../vscode/settings.json;
+       # };
+       # ".config/Code - OSS/User/keybindings.json" = {
+       #     source = ./../vscode/keybindings.json;
+       # };
     };
 }
