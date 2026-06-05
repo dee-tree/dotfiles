@@ -64,8 +64,11 @@
         };
 
         # niri
-        ".config/niri/config.kdl" = {
-            source = config.lib.file.mkOutOfStoreSymlink ./../niri/config.kdl;
+        ".config/niri/niri-binds.kdl" = {
+            source = config.lib.file.mkOutOfStoreSymlink ./../niri/niri-binds.kdl;
+        };
+        ".config/niri/niri-theme.kdl" = {
+            source = config.lib.file.mkOutOfStoreSymlink ./../niri/niri-theme.kdl;
         };
 
         # danksearch
