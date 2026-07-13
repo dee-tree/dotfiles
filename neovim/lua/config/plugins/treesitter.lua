@@ -1,31 +1,32 @@
 return {
     'nvim-treesitter/nvim-treesitter',
     lazy = false,
-    -- branch = 'main', --  return to main later, when it will be more stable
-    tag = "v0.10.0", -- don't forget to update when 'ft_to_lang' exception will be fixed
+    branch = 'main', --  return to main later, when it will be more stable
     build = ':TSUpdate',
     dependencies = {
         {
             "LiadOz/nvim-dap-repl-highlights",
-            opts = {
-                
-            }
+            opts = {}
         },
+        {
+            "nvim-treesitter/nvim-treesitter-textobjects",
+            branch = 'main',
+            opts = {
+                lookahead = true,
+                selection_modes = {
+                  ['@parameter.outer'] = 'v', -- charwise
+                  ['@function.outer'] = 'V', -- linewise
+                  ['@class.outer'] = '<c-v>', -- blockwise
+                },
+            }
+        }
     },
 
     config = function()
-      local cfg = require("nvim-treesitter.configs")
-      cfg.setup({
-        highlight = { enable = true },
-        incremental_selection = {
-            enable = true,
-            keymaps = {
-                init_selection = false,
-                node_incremental = 'v',
-                node_decremental = 'V',
-            },
-        },
-        ensure_installed = {
+      local sitter = require("nvim-treesitter")
+      sitter.setup()
+
+      local parsers = {
           'dap_repl', -- for highlighting in dap (debug) REPL 
           'bash',
           'cmake',
@@ -40,7 +41,6 @@ return {
           'gpg',
           'javascript',
           'json',
-          'jsonc',
           'lua',
           'luadoc',
           'luap',
@@ -63,7 +63,24 @@ return {
           'java',
           'javadoc',
           'kotlin',
-        },
+      }
+      sitter.install(parsers)
+      vim.api.nvim_create_autocmd('FileType', {
+          pattern = { '<filetype>' },
+          callback = function(args)
+              local buf = args.buf
+                local filetype = args.match
+
+                -- you need some mechanism to avoid running on buffers that do not
+                -- correspond to a language (like oil.nvim buffers), this implementation
+                -- checks if a parser exists for the current language
+                local language = vim.treesitter.language.get_lang(filetype) or filetype
+                if not vim.treesitter.language.add(language) then
+                    return
+              end
+              vim.treesitter.start()
+          end,
       })
+
     end,
 }

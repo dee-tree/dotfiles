@@ -1,7 +1,10 @@
 { config, pkgs, ... }:
+let
+    username = "deetree";
+in
 {
-    home.username = "dee";
-    home.homeDirectory = "/home/dee";
+    home.username = username;
+    home.homeDirectory = "/home/${username}";
     home.stateVersion = "26.05";
     programs.home-manager.enable = true;
     programs.direnv.enable = true;
@@ -12,14 +15,13 @@
         bat
         delta
         
-        # TODO: ghostty - setup nixGL / nix-system-graphics
-        # ghostty
         zellij
+        fish
 
         ripgrep
+        tree-sitter
         python3
         nodejs
-
     ];
 
     home.file = {
@@ -61,19 +63,6 @@
         # zellij
         ".config/zellij/config.kdl" = {
             source = config.lib.file.mkOutOfStoreSymlink ./../zellij/config.kdl;
-        };
-
-        # niri
-        ".config/niri/niri-binds.kdl" = {
-            source = config.lib.file.mkOutOfStoreSymlink ./../niri/niri-binds.kdl;
-        };
-        ".config/niri/niri-theme.kdl" = {
-            source = config.lib.file.mkOutOfStoreSymlink ./../niri/niri-theme.kdl;
-        };
-
-        # danksearch
-        ".config/danksearch/config.toml" = {
-            source = config.lib.file.mkOutOfStoreSymlink ./../niri/danksearch/config.toml;    
         };
 
         # vscode

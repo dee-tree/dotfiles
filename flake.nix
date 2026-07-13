@@ -12,16 +12,18 @@
 
     outputs = {
         nixpkgs, flake-utils, home-manager, ...
-    }:
-    
+    }: flake-utils.lib.eachDefaultSystem (system:
     let
-        system = "x86_64-linux";
-        pkgs = import nixpkgs { inherit system; };
+        pkgs = nixpkgs.legacyPackages.${system};
     in {
-        homeConfigurations = {
+        packages.homeConfigurations = {
             "dee" = home-manager.lib.homeManagerConfiguration {
                 inherit pkgs;
                 modules = [ ./home-manager/home.nix ];
+            };
+            "deetree@deeberry" = home-manager.lib.homeManagerConfiguration {
+                inherit pkgs;
+                modules = [ ./home-manager/deeberry.home.nix ];
             };
         };
         # devShells.default = pkgs.mkShell {
@@ -37,6 +39,6 @@
         #         echo "After cjworkspace"
         #     '';
         # };
-    };
+    });
 }
 
