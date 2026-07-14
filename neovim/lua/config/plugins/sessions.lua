@@ -18,7 +18,7 @@ return {
     },
   },
   keys = {
-    { '<leader>fs', '<cmd>SessionSearch<CR>', desc = 'Session search' },
-    { '<leader>ss', '<cmd>SessionSave<CR>', desc = 'Save session' },
+    { '<leader>fs', '<cmd>AutoSession search<CR>', desc = 'Session search' },
+    { '<leader>ss', '<cmd>AutoSession save<CR>', desc = 'Save session' },
   },
 }
