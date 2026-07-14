@@ -55,3 +55,12 @@ vim.g.clipboard = {
     },
 }
 
+vim.opt.winborder = "rounded"
+vim.opt.completeopt:append("popup")
+
+require('vim._core.ui2').enable({
+    enable = true,
+    msg = {
+        targets = "cmd"
+    }
+})

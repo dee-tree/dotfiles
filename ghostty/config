@@ -1,4 +1,3 @@
-command = "/home/dee/.nix-profile/bin/fish"
 config-file = mappings.conf
 
 theme = catppuccin-mocha.conf

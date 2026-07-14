@@ -17,4 +17,4 @@ if type -q direnv
     direnv hook fish | source
 end
 
-set -xg IN_FISH_SHELL ""
+set -xg IN_FISH_SHELL "true"

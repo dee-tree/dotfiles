@@ -1,6 +1,6 @@
 return {
     'nvim-telescope/telescope.nvim',
-    branch = "0.1.x",
+    branch = "master",
     dependencies = {
         'nvim-lua/plenary.nvim',
         {
@@ -10,9 +10,10 @@ return {
         },
         {
             "nvim-telescope/telescope-live-grep-args.nvim" ,
+            branch = "master",
             -- This will not install any breaking changes.
             -- For major updates, this must be adjusted manually.
-            version = "^1.0.0",
+            -- version = "^1.0.0",
         },
         'debugloop/telescope-undo.nvim',
     },

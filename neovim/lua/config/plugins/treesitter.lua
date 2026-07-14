@@ -82,5 +82,33 @@ return {
           end,
       })
 
+    vim.api.nvim_create_autocmd('User', { pattern = 'TSUpdate',
+    callback = function()
+        local parser_config = require("nvim-treesitter.parsers")
+        parser_config.cangjie = {
+          install_info = {
+            url ="https://gitcode.com/Cangjie-SIG/tree-sitter-cangjie",
+            -- files = { "src/parser.c", "src/scanner.c" },
+            branch = "main",
+            generate = false,
+            generate_from_json = false,
+            queries = "queries",
+         },
+        }
+    end})
+
+    vim.treesitter.language.register('cangjie', { 'cj' })
+    if not vim.filetype.match({ filename = "cangjie" }) then
+        vim.filetype.add({
+            extension = {
+                cj = "cangjie",
+            },
+        })
+    end
+
+    vim.api.nvim_create_autocmd('FileType', {
+      pattern = { 'cangjie' },
+      callback = function() vim.treesitter.start() end,
+    })
     end,
 }

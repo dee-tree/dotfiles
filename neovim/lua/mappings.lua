@@ -4,27 +4,27 @@ local function map(mode, lhs, rhs, opts)
     vim.keymap.set(mode, lhs, rhs, options)
 end
 
-function nmap(lhs, rhs, opts)
+local function nmap(lhs, rhs, opts)
   map('n', lhs, rhs, opts)
 end
 
-function imap(lhs, rhs, opts)
+local function imap(lhs, rhs, opts)
   map('i', lhs, rhs, opts)
 end
 
-function omap(lhs, rhs, opts)
+local function omap(lhs, rhs, opts)
   map('o', lhs, rhs, opts)
 end
 
-function vmap(lhs, rhs, opts)
+local function vmap(lhs, rhs, opts)
   map('v', lhs, rhs, opts)
 end
 
-function tmap(lhs, rhs, opts)
+local function tmap(lhs, rhs, opts)
   map('t', lhs, rhs, opts)
 end
 
-function xmap(lhs, rhs, opts)
+local function xmap(lhs, rhs, opts)
   map('x', lhs, rhs, opts)
 end
 
@@ -45,6 +45,24 @@ nmap('<leader>rr', '<cmd>lua ReloadConfig()<cr>')
 
 nmap('<C-a>', 'ggVG')      -- select all
 map({'i', 'v'},'<C-a>', '<ESC>ggVG') -- select all
+map({'x', 'o'}, 'v',
+    function()
+        if vim.treesitter.get_parser(nil, nil, { error = false }) then
+            require('vim.treesitter._select').select_parent(vim.v.count1)
+        else
+            vim.lsp.buf.selection_range(vim.v.count1)
+        end
+    end,
+    { desc = "Incremental selection" })
+map({'x', 'o'}, 'V',
+    function()
+        if vim.treesitter.get_parser(nil, nil, { error = false }) then
+            require('vim.treesitter._select').select_child(vim.v.count1)
+        else
+            vim.lsp.buf.selection_range(-vim.v.count1)
+        end
+    end,
+    { desc = "Decremental selection" })
 
 map({'n', 'v'}, '<C-c>', '"+y') -- yank to clipboard
 
