@@ -14,6 +14,11 @@ end
 function my_key_bindings
     fish_default_key_bindings
     bind . 'expand-dot-to-parent-directory-path'
+
+    bind ctrl-backspace backward-kill-word
+    bind ctrl-delete kill-word
+    bind ctrl-left prevd-or-backward-word
+    bind ctrl-right nextd-or-forward-word
 end
 
 set -g fish_key_bindings my_key_bindings
