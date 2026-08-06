@@ -6,6 +6,11 @@ in
   imports = [
     ./common.nix
   ];
+
+  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (pkgs.lib.getName pkg) [
+    "bws"
+  ];
+
   home = {
     inherit username;
     homeDirectory = "/home/${username}";
