@@ -14,6 +14,7 @@ in {
       ripgrep
       bat
       delta
+      secretspec
 
       # dev
       python3

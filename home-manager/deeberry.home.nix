@@ -14,6 +14,8 @@ in
     packages = with pkgs; [
       fish
       tree-sitter
+
+      bws
     ];
   };
 
