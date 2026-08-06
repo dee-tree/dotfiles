@@ -1,8 +1,8 @@
 {
-    description = "dotfiles";
+    description = "dee's nix config a.k.a dotfiles";
 
     inputs = {
-        nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+        nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
         flake-utils.url = "github:numtide/flake-utils";
         home-manager = { 
             url = "github:nix-community/home-manager";
@@ -12,33 +12,27 @@
 
     outputs = {
         nixpkgs, flake-utils, home-manager, ...
-    }: flake-utils.lib.eachDefaultSystem (system:
+    }@inputs: flake-utils.lib.eachDefaultSystem (system:
     let
         pkgs = nixpkgs.legacyPackages.${system};
+        cfg = import ./home-manager/cfg.nix { inherit inputs; };
     in {
         packages.homeConfigurations = {
             "dee" = home-manager.lib.homeManagerConfiguration {
                 inherit pkgs;
-                modules = [ ./home-manager/home.nix ];
+                modules = [
+                  ./home-manager/home.nix
+                ];
+                extraSpecialArgs = cfg;
             };
             "deetree@deeberry" = home-manager.lib.homeManagerConfiguration {
                 inherit pkgs;
-                modules = [ ./home-manager/deeberry.home.nix ];
+                modules = [
+                  ./home-manager/deeberry.home.nix
+                ];
+                extraSpecialArgs = cfg;
             };
         };
-        # devShells.default = pkgs.mkShell {
-        #     buildInputs = with pkgs; [
-        #         fish
-        #         starship
-        #         neovim
-        #     ];
-        #
-        #     shellHook = ''
-        #         echo Welcome
-        #         cjworkspace $(pwd)
-        #         echo "After cjworkspace"
-        #     '';
-        # };
     });
 }
 

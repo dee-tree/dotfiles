@@ -1,93 +1,44 @@
-{ config, pkgs, ... }:
+{ config, pkgs, cfg, ... }:
+let
+    username = "dee";
+in
 {
-    home.username = "dee";
-    home.homeDirectory = "/home/dee";
-    home.stateVersion = "26.05";
-    programs.home-manager.enable = true;
-    programs.direnv.enable = true;
+  imports = [
+    ./common.nix
+  ];
+  home = {
+    inherit username;
+    homeDirectory = "/home/${username}";
+    stateVersion = "26.05";
 
-    home.packages = with pkgs; [
-        starship
-        neovim
-        bat
-        delta
-        
-        # TODO: ghostty - setup nixGL / nix-system-graphics
-        # ghostty
-        zellij
-
-        ripgrep
-        python3
-        nodejs
-
+    packages = with pkgs; [
     ];
 
-    home.file = {
-        # fish
-        ".config/fish/config.fish" = {
-            source = config.lib.file.mkOutOfStoreSymlink ./../fish/config.fish;
-        };
-        ".config/fish/conf.d" = {
-            source = config.lib.file.mkOutOfStoreSymlink ./../fish/conf.d;
-            recursive = true;
-        };
+    file = {
+      # ghostty
+      ".config/ghostty/config" = {
+          source = config.lib.file.mkOutOfStoreSymlink ./../ghostty/config;
+      };
+      ".config/ghostty/mappings.conf" = {
+          source = config.lib.file.mkOutOfStoreSymlink ./../ghostty/mappings.conf;
+      };
+      ".config/ghostty/themes" = {
+          source = config.lib.file.mkOutOfStoreSymlink ./../ghostty/themes;
+          recursive = true;
+      };
 
-        # ghostty
-        ".config/ghostty/config" = {
-            source = config.lib.file.mkOutOfStoreSymlink ./../ghostty/config;
-        };
-        ".config/ghostty/mappings.conf" = {
-            source = config.lib.file.mkOutOfStoreSymlink ./../ghostty/mappings.conf;
-        };
-        ".config/ghostty/themes" = {
-            source = config.lib.file.mkOutOfStoreSymlink ./../ghostty/themes;
-            recursive = true;
-        };
+      # niri
+      ".config/niri/niri-binds.kdl" = {
+          source = config.lib.file.mkOutOfStoreSymlink ./../niri/niri-binds.kdl;
+      };
+      ".config/niri/niri-theme.kdl" = {
+          source = config.lib.file.mkOutOfStoreSymlink ./../niri/niri-theme.kdl;
+      };
 
-        # neovim
-        ".config/nvim/init.lua" = {
-            source = config.lib.file.mkOutOfStoreSymlink ./../neovim/init.lua;
-        };
-        ".config/nvim/lua" = {
-            source = config.lib.file.mkOutOfStoreSymlink ./../neovim/lua;
-            recursive = true;
-        };
-
-        # starship
-        ".config/starship.toml" = {
-            source = config.lib.file.mkOutOfStoreSymlink ./../starship/starship.toml;
-        };
-
-        # zellij
-        ".config/zellij/config.kdl" = {
-            source = config.lib.file.mkOutOfStoreSymlink ./../zellij/config.kdl;
-        };
-
-        # niri
-        ".config/niri/niri-binds.kdl" = {
-            source = config.lib.file.mkOutOfStoreSymlink ./../niri/niri-binds.kdl;
-        };
-        ".config/niri/niri-theme.kdl" = {
-            source = config.lib.file.mkOutOfStoreSymlink ./../niri/niri-theme.kdl;
-        };
-
-        # danksearch
-        ".config/danksearch/config.toml" = {
-            source = config.lib.file.mkOutOfStoreSymlink ./../niri/danksearch/config.toml;    
-        };
-
-        # vscode
-       # ".config/Code/User/settings.json" = {
-       #     source = ./../vscode/settings.json;
-       # };
-       # ".config/Code/User/keybindings.json" = {
-       #     source = ./../vscode/keybindings.json;
-       # };
-       # ".config/Code - OSS/User/settings.json" = {
-       #     source = ./../vscode/settings.json;
-       # };
-       # ".config/Code - OSS/User/keybindings.json" = {
-       #     source = ./../vscode/keybindings.json;
-       # };
+      # danksearch
+      ".config/danksearch/config.toml" = {
+          source = config.lib.file.mkOutOfStoreSymlink ./../niri/danksearch/config.toml;
+      };
     };
+  };
 }

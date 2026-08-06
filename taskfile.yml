@@ -1,0 +1,13 @@
+# yaml-language-server: $schema=https://taskfile.dev/schema.json
+version: "3"
+
+vars:
+  DOTFILES: '{{ .DOTFILES | default "~/dotfiles" }}'
+
+tasks:
+  reload:
+    desc: Reload dotfiles with home-manager
+    cmds:
+      - home-manager switch --flake {{ .DOTFILES }}
+      - cmd: echo "✅ home environment has been reloaded"
+        silent: true
