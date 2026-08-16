@@ -1,6 +1,5 @@
 { config, pkgs, cfg, ... }:
 let
-  ln = config.lib.file.mkOutOfStoreSymlink;
 in {
   home = {
     packages = with pkgs; [
@@ -53,7 +52,7 @@ in {
 
       # taskfile
       "taskfile.yml" = {
-        source = ln "./../taskfile.yml";
+        source = config.lib.file.mkOutOfStoreSymlink ./../taskfile.yml;
       };
     };
   };
