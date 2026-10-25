@@ -6,12 +6,19 @@ in
   imports = [
     ./common.nix
   ];
+
+  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (pkgs.lib.getName pkg) [
+    "obsidian"
+  ];
+
   home = {
     inherit username;
     homeDirectory = "/home/${username}";
     stateVersion = "26.05";
 
     packages = with pkgs; [
+        obsidian
+        # typst
     ];
 
     file = {
