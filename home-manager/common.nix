@@ -6,6 +6,7 @@ in {
       # user environment
       starship
       neovim
+      tree-sitter # grammars, mostly for nvim
       zellij
       go-task
 
@@ -14,6 +15,10 @@ in {
       bat
       delta
       secretspec
+
+      # nix dev
+      nixd
+      nil
 
       # dev
       python3
