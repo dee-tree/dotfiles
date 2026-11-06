@@ -1,5 +1,6 @@
 { inputs, ... }:
 let
-in {
+in
+{
 
 }

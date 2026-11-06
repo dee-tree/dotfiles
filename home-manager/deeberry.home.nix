@@ -1,4 +1,9 @@
-{ config, pkgs, cfg, ... }:
+{
+  config,
+  pkgs,
+  cfg,
+  ...
+}:
 let
   username = "deetree";
 in
@@ -7,9 +12,11 @@ in
     ./common.nix
   ];
 
-  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (pkgs.lib.getName pkg) [
-    "bws"
-  ];
+  nixpkgs.config.allowUnfreePredicate =
+    pkg:
+    builtins.elem (pkgs.lib.getName pkg) [
+      "bws"
+    ];
 
   home = {
     inherit username;
