@@ -25,8 +25,6 @@ in
     stateVersion = "26.05";
 
     packages = with pkgs; [
-      tree-sitter
-
       bws
     ];
   };
