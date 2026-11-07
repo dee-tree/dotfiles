@@ -5,7 +5,7 @@ vars:
   DOTFILES: '{{ .DOTFILES | default "~/dotfiles" }}'
 
 tasks:
-  reload:
+  home-reload:
     desc: Reload dotfiles with home-manager
     cmds:
       - home-manager switch --flake {{ .DOTFILES }}

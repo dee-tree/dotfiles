@@ -9,7 +9,8 @@ let
 in
 {
   imports = [
-    ./common.nix
+    ../../profiles/core.nix
+    ../../profiles/dev.nix
   ];
 
   nixpkgs.config.allowUnfreePredicate =
@@ -24,7 +25,6 @@ in
     stateVersion = "26.05";
 
     packages = with pkgs; [
-      fish
       tree-sitter
 
       bws

@@ -26,7 +26,7 @@
     },
   },
   "semantic_tokens": "combined",
-  "format_on_save": "on",
+  "format_on_save": "off",
   "indent_guides": {
     "background_coloring": "disabled",
     "coloring": "indent_aware",
@@ -90,5 +90,10 @@
   "colorize_brackets": true,
   "relative_line_numbers": "enabled",
   "vertical_scroll_margin": 8,
-}
 
+  "languages": {
+    "Nix": {
+      "tab_size": 2
+    }
+  }
+}

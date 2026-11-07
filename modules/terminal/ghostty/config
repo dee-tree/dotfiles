@@ -1,3 +1,5 @@
+command = fish
+
 config-file = mappings.conf
 
 theme = catppuccin-mocha.conf

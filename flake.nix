@@ -21,21 +21,28 @@
       system:
       let
         pkgs = nixpkgs.legacyPackages.${system};
-        cfg = import ./home-manager/cfg.nix { inherit inputs; };
+        cfg = import ./cfg.nix { inherit inputs; };
       in
       {
         packages.homeConfigurations = {
-          "dee" = home-manager.lib.homeManagerConfiguration {
+          "dee@hawk" = home-manager.lib.homeManagerConfiguration {
             inherit pkgs;
             modules = [
-              ./home-manager/home.nix
+              homes/hawk
             ];
             extraSpecialArgs = cfg;
           };
           "deetree@deeberry" = home-manager.lib.homeManagerConfiguration {
             inherit pkgs;
             modules = [
-              ./home-manager/deeberry.home.nix
+              homes/deeberry
+            ];
+            extraSpecialArgs = cfg;
+          };
+          "dee@seagull" = home-manager.lib.homeManagerConfiguration {
+            inherit pkgs;
+            modules = [
+              homes/seagull
             ];
             extraSpecialArgs = cfg;
           };
