@@ -5,5 +5,5 @@
     pkgs.starship
   ];
 
-  xdg.configFile."starship.toml".source = config.lib.file.mkOutOfStoreSymlink ./starship.toml;
+  xdg.configFile."starship.toml".source = ./starship.toml;
 }

@@ -5,6 +5,6 @@
     pkgs.neovim
   ];
 
-  xdg.configFile."nvim/init.lua".source = config.lib.file.mkOutOfStoreSymlink ./init.lua;
-  xdg.configFile."nvim/lua".source = config.lib.file.mkOutOfStoreSymlink ./lua;
+  xdg.configFile."nvim/init.lua".source = ./init.lua;
+  xdg.configFile."nvim/lua".source = ./lua;
 }

@@ -6,6 +6,6 @@
   ];
 
   home.file."taskfile.yml" = {
-    source = config.lib.file.mkOutOfStoreSymlink ./taskfile.yml;
+    source = ./taskfile.yml;
   };
 }

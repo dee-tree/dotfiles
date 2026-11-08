@@ -5,5 +5,5 @@
     pkgs.zellij
   ];
 
-  xdg.configFile."zellij/config.kdl".source = config.lib.file.mkOutOfStoreSymlink ./config.kdl;
+  xdg.configFile."zellij/config.kdl".source = ./config.kdl;
 }

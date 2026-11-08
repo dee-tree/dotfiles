@@ -14,6 +14,6 @@
   # touch ~/.config/niri/dms/{colors,layout,alttab,binds}.kdl
 
   xdg.configFile = {
-    "danksearch/config.toml".source = config.lib.file.mkOutOfStoreSymlink ./danksearch/config.toml;
+    "danksearch/config.toml".source = ./danksearch/config.toml;
   };
 }

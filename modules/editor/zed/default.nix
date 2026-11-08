@@ -16,5 +16,5 @@
   xdg.configFile."zed/settings.json".source =
     config.lib.file.mkOutOfStoreSymlink ./settings.json;
 
-  xdg.configFile."zed/keymap.json".source = config.lib.file.mkOutOfStoreSymlink ./keymap.json;
+  xdg.configFile."zed/keymap.json".source = ./keymap.json;
 }
