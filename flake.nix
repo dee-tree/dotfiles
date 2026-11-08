@@ -39,6 +39,13 @@
             ];
             extraSpecialArgs = cfg;
           };
+          "dee@deelime" = home-manager.lib.homeManagerConfiguration {
+            inherit pkgs;
+            modules = [
+              homes/deelime
+            ];
+            extraSpecialArgs = cfg;
+          };
           "dee@seagull" = home-manager.lib.homeManagerConfiguration {
             inherit pkgs;
             modules = [
